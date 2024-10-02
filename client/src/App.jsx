@@ -1,16 +1,17 @@
-import React from 'react'
-import { Routes, Route } from 'react-router-dom'
-import Navbar from './components/Navbar'
-import Home from './pages/Home'
-import Jobs from './pages/Jobs'
-import Marketplace from './pages/Marketplace'
-import Learn from './pages/Learn'
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import Jobs from "./pages/Jobs";
+import Marketplace from "./pages/Marketplace";
+import Learn from "./pages/Learn";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
     <div className="min-h-screen bg-gray-100">
       <Navbar />
-      <main className="container mx-auto mt-8 px-4">
+      <main className=" mx-0">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/jobs" element={<Jobs />} />
@@ -19,7 +20,7 @@ function App() {
         </Routes>
       </main>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
