@@ -3,26 +3,27 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import React from "react";
+import { LinkContainer } from "react-router-bootstrap";
 
 function MP_Navbar() {
   return (
-    <Navbar className="bg-yellow-200  pl-9">
-      <Navbar.Brand href="#home">Amazoon</Navbar.Brand>
+    <Navbar className="bg-yellow-200  pl-9 " >
+      <LinkContainer to="/marketplace">
+        <Navbar.Brand href="#home">MarketPlace</Navbar.Brand>
+      </LinkContainer>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="m-0">
-          <Nav.Link href="#home">Home</Nav.Link>
-          <Nav.Link href="#link">Link</Nav.Link>
-          <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">
-              Another action
-            </NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4">
-              Separated link
-            </NavDropdown.Item>
+        <Nav className="ms-auto pr-28">
+          <NavDropdown title="User" id="basic-nav-dropdown">
+            <LinkContainer to="/cart">
+              <NavDropdown.Item href="#action/3.1">Cart</NavDropdown.Item>
+            </LinkContainer>
+            <LinkContainer to="/orders">
+              <NavDropdown.Item href="#action/3.1">My Orders</NavDropdown.Item>
+            </LinkContainer>
+            <LinkContainer to="/marketplace">
+              <NavDropdown.Item >Logout</NavDropdown.Item>
+            </LinkContainer>
           </NavDropdown>
         </Nav>
       </Navbar.Collapse>
