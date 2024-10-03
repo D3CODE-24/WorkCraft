@@ -40,7 +40,8 @@ const getProductById = asyncErrorHandler(async (req, res) => {
   const { id } = req.params;
   try {
     const product = await ProductModel.findById(id);
-    res.status(200).json(product);
+    const similar=await ProductModel.find({category:product.category}).limit(5);    //confirm with sharon
+    res.status(200).json({product,similar});
   } catch (err) {
     return new ErrorHandler(500, err);
   }
