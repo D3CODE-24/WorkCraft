@@ -26,6 +26,10 @@ const ProductSchema = new Schema({
     type: String,
     required: [true, "can't be blank"],
   },
+  pictures: {
+    type: [String],
+    required: true,
+  },
 });
 
 export default mongoose.model("Product", ProductSchema);

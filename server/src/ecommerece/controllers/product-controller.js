@@ -1,8 +1,14 @@
 import { ProductModel } from "#ecommerece/models";
 
 const createProduct = async (req, res) => {
-  const { name, description, price, category, pictures, manufacturer } =
-    req.body;
+  const {
+    name,
+    description,
+    price,
+    category,
+    imgaes: pictures,
+    manufacturer,
+  } = req.body;
   const product = new ProductModel({
     name,
     description,
@@ -41,8 +47,14 @@ const getProductById = async (req, res) => {
 
 const updateProduct = async (req, res) => {
   const { id } = req.params;
-  const { name, description, price, category, pictures, manufacturer } =
-    req.body;
+  const {
+    name,
+    description,
+    price,
+    category,
+    images: pictures,
+    manufacturer,
+  } = req.body;
   try {
     const product = await ProductModel.findByIdAndUpdate(
       id,
