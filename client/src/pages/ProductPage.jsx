@@ -16,13 +16,14 @@ import { useParams } from "react-router-dom";
 import Loading from "@/components/Loading";
 import SimilarProduct from "@/components/SimilarProduct";
 import { LinkContainer } from "react-router-bootstrap";
+import { useAddToCartMutation } from "@/redux/services-mp/appApi";
 
 function ProductPage() {
   const { id } = useParams();
-//   const user = useSelector((state) => state.user);
+  //   const user = useSelector((state) => state.user);
   const [product, setProduct] = useState(null);
   const [similar, setSimilar] = useState(null);
-
+  const [addToCart, { isSuccess }] = useAddToCartMutation();
 
   const handleDragStart = (e) => e.preventDefault();
   useEffect(() => {
@@ -68,19 +69,23 @@ function ProductPage() {
             controlsStrategy="alternate"
           />
         </Col>
-        <Col lg={6} className="pt-4">
-          <h1>{product.name}</h1>
-          <p>
+        <Col lg={6} className="pt-4 ">
+          <h1 className="text-3xl text-center ">{product.name}</h1>
+          <p className="text-center text-lg mt-2">
             <Badge bg="primary">{product.category}</Badge>
           </p>
-          <p className="product__price">${product.price}</p>
-          <p style={{ textAlign: "justify" }} className="py-3">
+          <p className="text-xl text-center mt-2">₹{product.price}</p>
+          <p style={{ textAlign: "justify" }} className="py-3 text-lg">
             <strong>Description:</strong> {product.description}
           </p>
-          {/* {true &&
+          {true &&
             true && ( //user here
-              <ButtonGroup style={{ width: "90%" }}>
+              <ButtonGroup
+                className="mb-3 rounded-2xl"
+                style={{ width: "90%" }}
+              >
                 <Form.Select
+                  className="rounded-2xl"
                   size="lg"
                   style={{ width: "40%", borderRadius: "0" }}
                 >
@@ -104,8 +109,8 @@ function ProductPage() {
                   Add to cart
                 </Button>
               </ButtonGroup>
-            )} */}
-          {/* {true &&
+            )}
+          {true &&
             true && ( //user here
               <LinkContainer to={`/product/${product._id}/edit`}>
                 <Button size="lg">Edit Product</Button>
@@ -117,7 +122,7 @@ function ProductPage() {
               title="Added to cart"
               body={`${product.name} is in your cart`}
             />
-          )} */}
+          )}
         </Col>
       </Row>
       <div className="my-4">
