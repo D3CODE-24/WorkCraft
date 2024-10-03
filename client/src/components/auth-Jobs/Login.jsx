@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect,useState } from 'react';
+import axios from 'axios';
 import { Label } from '../ui/label';
 import { Input } from '../ui/input';
 import { RadioGroup } from '../ui/radio-group';
 import { Button } from '../ui/button';
 import { Link, useNavigate } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
+import {USER_API_END_POINT} from '../../utils/constants'
+import { useDispatch,useSelector } from 'react-redux';
 
 const Login = () => {
     const [input, setInput] = useState({
@@ -12,8 +15,10 @@ const Login = () => {
         password: '',
         role: '',
     });
-    const navigate=useNavigate();
-    const [loading, setLoading] = useState(false); // Local loading state
+    const {loading}= useSelector(store=>store.auth);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    //const [loading, setLoading] = useState(false); // Local loading state
 
     const changeEventHandler = (e) => {
         setInput({ ...input, [e.target.name]: e.target.value });
@@ -21,9 +26,9 @@ const Login = () => {
 
     const submitHandler = async(e) => {
          e.preventDefault();
-         //console.log(input)
-               
+         //console.log(input)            
          try{
+             dispatch(setLoading(true));
              const res = await axios.post(`${USER_API_END_POINT}/login`,input,{
                  headers:{
                      "Content-Type":"application/json"
@@ -36,6 +41,8 @@ const Login = () => {
              }
          }catch(error){
              console.log(error);
+         }finally{
+            dispatch(setLoading(false));
          }
     };
 

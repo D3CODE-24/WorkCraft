@@ -3,7 +3,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import NavbarJobs from "./components/shared/NavbarJobs"; // Import job-specific navbar
 import Home from "./pages/Home";
-import Jobs from "./pages/Jobs";
+import Jobs from "./pages/JobsPortal";
 import Marketplace from "./pages/Marketplace";
 import Learn from "./pages/Learn";
 import "bootstrap/dist/css/bootstrap.min.css";

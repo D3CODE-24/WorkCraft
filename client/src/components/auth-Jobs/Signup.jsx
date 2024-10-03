@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
 import { USER_API_END_POINT } from '@/utils/constants';
 import { toast } from 'sonner';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Signup = () => {
     const [input, setInput] = useState({
@@ -17,9 +18,11 @@ const Signup = () => {
         role: '',
         file: '',
     });
+    const {loading}= useSelector(store=>store.auth);
     const navigate=useNavigate();
-    const [loading, setLoading] = useState(false); // Local loading state
-
+    const dispatch=useDispatch();
+    //const [loading, setLoading] = useState(false); // Local loading state
+   
     const changeEventHandler = (e) => {
         setInput({ ...input, [e.target.name]: e.target.value });
     };
@@ -41,6 +44,7 @@ const Signup = () => {
             formData.append("file",input.file);
         }        
         try{
+            dispatch(setLoading(true))
             const res = await axios.post(`${USER_API_END_POINT}/register`,formData,{
                 headers:{
                     "Content-Type":"multipart/form-data"
@@ -53,6 +57,9 @@ const Signup = () => {
             }
         }catch(error){
             console.log(error);
+        }
+        finally{
+            dispatch(setLoading(false));
         }
     };
 
