@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Alert, Col, Container, Form, Row, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useCreateProductMutation } from "../redux/services-mp/appApi";
-import axios from "../axios"
+import axios from "../axios";
 
 function NewProduct() {
   const [name, setName] = useState("");
@@ -15,18 +15,18 @@ function NewProduct() {
   const [createProduct, { isError, error, isLoading, isSuccess }] =
     useCreateProductMutation();
 
-    function handleRemoveImg(imgObj) {
-      setImgToRemove(imgObj.public_id);
-      axios
-        .delete(`/images/${imgObj.public_id}/`)
-        .then((res) => {
-          setImgToRemove(null);
-          setImages((prev) =>
-            prev.filter((img) => img.public_id !== imgObj.public_id)
-          );
-        })
-        .catch((e) => console.log(e));
-    }
+  function handleRemoveImg(imgObj) {
+    setImgToRemove(imgObj.public_id);
+    axios
+      .delete(`/images/${imgObj.public_id}/`)
+      .then((res) => {
+        setImgToRemove(null);
+        setImages((prev) =>
+          prev.filter((img) => img.public_id !== imgObj.public_id)
+        );
+      })
+      .catch((e) => console.log(e));
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -37,7 +37,7 @@ function NewProduct() {
       ({ data }) => {
         if (data.length > 0) {
           setTimeout(() => {
-            navigate("/");
+            navigate("/marketplace");
           }, 1500);
         }
       }
@@ -128,7 +128,10 @@ function NewProduct() {
               <div className="grid grid-cols-1 gap-3 mt-10 ">
                 {images.map((image) => (
                   <div className="w-24 inline-block relative">
-                    <img className="w-full h-24 object-cover rounded-xl" src={image.url} />
+                    <img
+                      className="w-full h-24 object-cover rounded-xl"
+                      src={image.url}
+                    />
                     {imgToRemove != image.public_id && (
                       <i
                         className="fa fa-times-circle absolute bottom-20 text-xl cursor-pointer hover:text-red-500"
@@ -140,13 +143,23 @@ function NewProduct() {
               </div>
             </Form.Group>
             <Form.Group>
-              <Button className="mt-4" type="submit" disabled={isLoading || isSuccess}>
+              <Button
+                className="mt-4"
+                type="submit"
+                disabled={isLoading || isSuccess}
+              >
                 Create Product
               </Button>
             </Form.Group>
           </Form>
         </Col>
-        <Col md={6} > <img src="https://images.unsplash.com/photo-1652773899966-583e9d2f2fb0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzR8fHRlY2h8ZW58MHwxfDB8d2hpdGV8&auto=format&fit=crop&w=800&q=60" className="ml-24"/> </Col>
+        <Col md={6}>
+          {" "}
+          <img
+            src="https://images.unsplash.com/photo-1652773899966-583e9d2f2fb0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzR8fHRlY2h8ZW58MHwxfDB8d2hpdGV8&auto=format&fit=crop&w=800&q=60"
+            className="ml-24"
+          />{" "}
+        </Col>
       </Row>
     </Container>
   );

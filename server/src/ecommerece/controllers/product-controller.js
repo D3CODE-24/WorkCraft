@@ -7,7 +7,7 @@ const createProduct = asyncErrorHandler(async (req, res) => {
     description,
     price,
     category,
-    imgaes: pictures,
+    images: pictures,
     manufacturer,
   } = req.body;
   const product = new ProductModel({
