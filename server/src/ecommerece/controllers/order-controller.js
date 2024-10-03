@@ -1,6 +1,7 @@
 import { OrderModel, UserModel } from "../models/models.js";
+import { ErrorHandler, asyncErrorHandler } from "#ecommerece/middlewares";
 
-const createOrder = async (req, res) => {
+const createOrder = asyncErrorHandler(async (req, res) => {
   const { userId } = req.body;
   const user = await UserModel.findOne({ userId }).populate("cart");
   const cart = user.cart;
@@ -19,24 +20,24 @@ const createOrder = async (req, res) => {
   await order.save();
 
   res.status(200).json(order);
-};
+});
 
-const getOrders = async (req, res) => {
+const getOrders = asyncErrorHandler(async (req, res) => {
   const orders = await OrderModel.find();
   res.status(200).json(orders);
-};
+});
 
-const getOrder = async (req, res) => {
+const getOrder = asyncErrorHandler(async (req, res) => {
   const order = await OrderModel.findById(req.params.id);
   res.status(200).json(order);
-};
+});
 
-const shipOder = async (req, res) => {
+const shipOder = asyncErrorHandler(async (req, res) => {
   const order = await OrderModel.findById(req.params.id);
   order.status = "shipped";
   await order.save();
   res.status(200).json(order);
-};
+});
 
 const OrderController = {
   createOrder,

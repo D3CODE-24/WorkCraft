@@ -1,6 +1,7 @@
 import { ProductModel } from "#ecommerece/models";
+import { ErrorHandler, asyncErrorHandler } from "#ecommerece/middlewares";
 
-const createProduct = async (req, res) => {
+const createProduct = asyncErrorHandler(async (req, res) => {
   const {
     name,
     description,
@@ -24,18 +25,18 @@ const createProduct = async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
-};
+});
 
-const getProducts = async (req, res) => {
+const getProducts = asyncErrorHandler(async (req, res) => {
   try {
     const products = await ProductModel.find();
     res.status(200).json(products);
   } catch (err) {
     res.status(500).json(err);
   }
-};
+});
 
-const getProductById = async (req, res) => {
+const getProductById = asyncErrorHandler(async (req, res) => {
   const { id } = req.params;
   try {
     const product = await ProductModel.findById(id);
@@ -43,9 +44,9 @@ const getProductById = async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
-};
+});
 
-const updateProduct = async (req, res) => {
+const updateProduct = asyncErrorHandler(async (req, res) => {
   const { id } = req.params;
   const {
     name,
@@ -65,9 +66,9 @@ const updateProduct = async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
-};
+});
 
-const deleteProduct = async (req, res) => {
+const deleteProduct = asyncErrorHandler(async (req, res) => {
   const { id } = req.params;
   try {
     const product = await ProductModel.findByIdAndDelete(id);
@@ -75,9 +76,9 @@ const deleteProduct = async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
-};
+});
 
-const getProductsByCategory = async (req, res) => {
+const getProductsByCategory = asyncErrorHandler(async (req, res) => {
   const { category } = req.params;
   try {
     const products = await ProductModel.find({ category });
@@ -85,7 +86,7 @@ const getProductsByCategory = async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
-};
+});
 
 const productController = {
   createProduct,

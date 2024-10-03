@@ -1,6 +1,7 @@
 import { UserModel, ProductModel } from "#ecommerece/models";
+import { ErrorHandler, asyncErrorHandler } from "#ecommerece/middlewares";
 
-const addToCart = async (req, res) => {
+const addToCart = asyncErrorHandler(async (req, res) => {
   const { userId, productId } = req.body;
   const user = await UserModel.findOne({ userId }).populate("cart");
   const cart = user.cart;
@@ -22,9 +23,9 @@ const addToCart = async (req, res) => {
   }
   cart.totalPrice += product.price;
   return res.status(200).json({ message: "Product added to cart" });
-};
+});
 
-const deleteFromCart = async (req, res) => {
+const deleteFromCart = asyncErrorHandler(async (req, res) => {
   const { userId, productId } = req.body;
   const user = await UserModel.findOne({ userId }).populate("cart");
   const cart = user.cart;
@@ -47,9 +48,9 @@ const deleteFromCart = async (req, res) => {
   }
 
   return res.status(200).json({ message: "Product removed from cart" });
-};
+});
 
-const getCart = async (req, res) => {
+const getCart = asyncErrorHandler(async (req, res) => {
   const { userId } = req.body;
   const user = await UserModel.findOne({ userId }).populate("cart");
   const cart = user.cart;
@@ -59,7 +60,7 @@ const getCart = async (req, res) => {
   }
 
   return res.status(200).json(cart);
-};
+});
 
 const cartController = {
   addToCart,
