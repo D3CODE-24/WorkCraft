@@ -7,7 +7,7 @@ const deleteImage = asyncErrorHandler(async (req, res) => {
     await cloudinary.uploader.destroy(public_id);
     res.status(200).send();
   } catch (e) {
-    res.status(400).send(e.message);
+    return new ErrorHandler(500, "Error deleting image");
   }
 });
 

@@ -7,7 +7,7 @@ const createProduct = asyncErrorHandler(async (req, res) => {
     description,
     price,
     category,
-    imgaes: pictures,
+    images: pictures,
     manufacturer,
   } = req.body;
   const product = new ProductModel({
@@ -23,7 +23,7 @@ const createProduct = asyncErrorHandler(async (req, res) => {
     const response = await product.save();
     res.status(201).json(response);
   } catch (err) {
-    res.status(500).json(err);
+    return new ErrorHandler(500, err);
   }
 });
 
@@ -32,7 +32,7 @@ const getProducts = asyncErrorHandler(async (req, res) => {
     const products = await ProductModel.find();
     res.status(200).json(products);
   } catch (err) {
-    res.status(500).json(err);
+    return new ErrorHandler(500, err);
   }
 });
 
@@ -42,7 +42,7 @@ const getProductById = asyncErrorHandler(async (req, res) => {
     const product = await ProductModel.findById(id);
     res.status(200).json(product);
   } catch (err) {
-    res.status(500).json(err);
+    return new ErrorHandler(500, err);
   }
 });
 
@@ -64,7 +64,7 @@ const updateProduct = asyncErrorHandler(async (req, res) => {
     );
     res.status(200).json(product);
   } catch (err) {
-    res.status(500).json(err);
+    return new ErrorHandler(500, err);
   }
 });
 
@@ -74,7 +74,7 @@ const deleteProduct = asyncErrorHandler(async (req, res) => {
     const product = await ProductModel.findByIdAndDelete(id);
     res.status(200).json(product);
   } catch (err) {
-    res.status(500).json(err);
+    return new ErrorHandler(500, err);
   }
 });
 
@@ -84,7 +84,7 @@ const getProductsByCategory = asyncErrorHandler(async (req, res) => {
     const products = await ProductModel.find({ category });
     res.status(200).json(products);
   } catch (err) {
-    res.status(500).json(err);
+    return new ErrorHandler(500, err);
   }
 });
 

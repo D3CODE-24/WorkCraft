@@ -7,7 +7,7 @@ const createOrder = asyncErrorHandler(async (req, res) => {
   const cart = user.cart;
 
   if (!cart) {
-    return res.status(400).json({ message: "Invalid user" });
+    return new ErrorHandler(400, "Invalid user");
   }
 
   const order = new OrderModel({

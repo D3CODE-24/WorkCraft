@@ -8,9 +8,9 @@ const addToCart = asyncErrorHandler(async (req, res) => {
   const product = await ProductModel.findById(productId);
 
   if (!cart) {
-    return res.status(400).json({ message: "Signup required" });
+    return new ErrorHandler(400, "Signup required");
   } else if (!product) {
-    return res.status(400).json({ message: "Invalid product" });
+    return new ErrorHandler(400, "Invalid product");
   }
 
   if (cart.items[productId]) {
@@ -32,9 +32,9 @@ const deleteFromCart = asyncErrorHandler(async (req, res) => {
   const product = await ProductModel.findById(productId);
 
   if (!cart) {
-    return res.status(400).json({ message: "Signup required" });
+    return new ErrorHandler(400, "Signup required");
   } else if (!product) {
-    return res.status(400).json({ message: "Invalid product" });
+    return new ErrorHandler(400, "Invalid product");
   }
 
   if (cart.items[productId]) {
@@ -44,7 +44,7 @@ const deleteFromCart = asyncErrorHandler(async (req, res) => {
     }
     cart.totalPrice -= product.price;
   } else {
-    return res.status(400).json({ message: "Product not found in cart" });
+    return new ErrorHandler(400, "Product not found in cart");
   }
 
   return res.status(200).json({ message: "Product removed from cart" });
@@ -56,7 +56,7 @@ const getCart = asyncErrorHandler(async (req, res) => {
   const cart = user.cart;
 
   if (!cart) {
-    return res.status(400).json({ message: "Invalid user" });
+    return new ErrorHandler(400, "Invalid user");
   }
 
   return res.status(200).json(cart);
