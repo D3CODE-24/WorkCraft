@@ -10,7 +10,7 @@ export const productSlice = createSlice({
   initialState,
   reducers: {
     updateProducts: (_, action) => {
-      return action.payload.data;
+      return action.payload;
     },
   },
 });
