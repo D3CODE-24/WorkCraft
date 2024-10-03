@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
 import categories from "@/categories";
 import { useDispatch, useSelector } from "react-redux";
-import { updateProducts } from "../features-mp/productSlice";
+import { updateProducts } from "../redux/features-mp/productSlice";
 import MP_ProductPreview from "@/components/MP_ProductPreview";
 
 const Marketplace = () => {

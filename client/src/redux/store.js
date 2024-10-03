@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import productSlice from "./features-mp/productSlice";
 import userSlice from "./features-mp/userSlice";
 import appApi from "./services-mp/appApi";
-
+import authSlice from "./authSlice"
 //persit our store
 import storage from "redux-persist/lib/storage";
 import { combineReducers } from "redux";
@@ -11,6 +11,7 @@ import { persistReducer } from "redux-persist";
 
 //reducers
 const reducer = combineReducers({
+    auth: authSlice,
     user: userSlice,
     products: productSlice,
     [appApi.reducerPath]: appApi.reducer,

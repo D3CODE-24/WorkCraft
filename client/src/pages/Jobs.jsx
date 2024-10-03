@@ -1,12 +1,17 @@
-import React from 'react'
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import HomeJobs from '../components/HomeJobs';
+import Login from '../components/auth-Jobs/Login';
+import Signup from '../components/auth-Jobs/Signup';
 
 const Jobs = () => {
   return (
-    <div>
-      <h2 className="text-3xl font-bold mb-4 mt-8">Job Listings</h2>
-      {/* Add job listing components here */}
-    </div>
-  )
-}
+    <Routes>
+      <Route path="/" element={<HomeJobs />} />
+      <Route path="login" element={<Login />} />
+      <Route path="signup" element={<Signup />} />
+    </Routes>
+  );
+};
 
-export default Jobs
+export default Jobs;

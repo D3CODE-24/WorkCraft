@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Alert, Col, Container, Form, Row, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { useCreateProductMutation } from "../services-mp/appApi";
+import { useCreateProductMutation } from "../redux/services-mp/appApi";
 import axios from "../axios"
 
 function NewProduct() {

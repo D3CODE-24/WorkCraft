@@ -1,6 +1,7 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import NavbarJobs from "./components/shared/NavbarJobs"; // Import job-specific navbar
 import Home from "./pages/Home";
 import Jobs from "./pages/Jobs";
 import Marketplace from "./pages/Marketplace";
@@ -9,13 +10,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import NewProduct from "./pages/NewProduct";
 
 function App() {
+  const location = useLocation();
+
   return (
     <div className="min-h-screen bg-gray-100">
-      <Navbar />
-      <main className=" mx-0">
+      {location.pathname.startsWith("/jobs") ? <NavbarJobs /> : <Navbar />}
+      <main className="mx-0">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/jobs" element={<Jobs />} />
+          <Route path="/jobs/*" element={<Jobs />} />
           <Route path="/marketplace" element={<Marketplace />} />
           <Route path="/learn" element={<Learn />} />
           <Route path="/new-product" element={<NewProduct/>}/>
