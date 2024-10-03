@@ -8,6 +8,7 @@ import Marketplace from "./pages/Marketplace";
 import Learn from "./pages/Learn";
 import "bootstrap/dist/css/bootstrap.min.css";
 import NewProduct from "./pages/NewProduct";
+import ProductPage from "./pages/ProductPage";
 
 function App() {
   const location = useLocation();
@@ -21,7 +22,8 @@ function App() {
           <Route path="/jobs/*" element={<Jobs />} />
           <Route path="/marketplace" element={<Marketplace />} />
           <Route path="/learn" element={<Learn />} />
-          <Route path="/new-product" element={<NewProduct/>}/>
+          <Route path="/product/:id" element={<ProductPage />} />
+          <Route path="/new-product" element={<NewProduct />} />
         </Routes>
       </main>
     </div>
