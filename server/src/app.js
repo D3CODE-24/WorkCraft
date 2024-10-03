@@ -21,10 +21,10 @@ app.use(
   }),
 );
 
-app.use(ROUTE_PREFIX + "/product", ProductRouter);
+app.use(ROUTE_PREFIX + "/products", ProductRouter);
 app.use(ROUTE_PREFIX + "/cart", CartRouter);
 app.use(ROUTE_PREFIX + "/order", OrderRouter);
-app.use(ROUTE_PREFIX + "/image", ImageRouter);
+app.use(ROUTE_PREFIX + "/images", ImageRouter);
 app.use(errorHandler);
 
 export default app;

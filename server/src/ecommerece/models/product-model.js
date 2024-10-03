@@ -24,7 +24,7 @@ const ProductSchema = new Schema({
   },
   manufacturer: {
     type: String,
-    required: [true, "can't be blank"],
+    required: false,
   },
 });
 

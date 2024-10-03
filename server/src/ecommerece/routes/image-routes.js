@@ -3,6 +3,6 @@ import { ImageController } from "#ecommerece/controllers";
 
 const ImageRouter = Router();
 
-ImageRouter.post("/", ImageController.deleteImage);
+ImageRouter.delete("/:public_id", ImageController.deleteImage);
 
 export default ImageRouter;
