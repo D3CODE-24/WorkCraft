@@ -4,6 +4,7 @@ import { Navbar, Button, Nav, NavDropdown, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { logout } from "../redux/features-mp/userSlice";
+import "../MP_Navbar.css";
 
 function MP_Navbar() {
   const user = useSelector((state) => state.user);
@@ -33,7 +34,7 @@ function MP_Navbar() {
                 <Nav.Link>
                   <i className="fas fa-shopping-cart"></i>
                   {user?.cart.count > 0 && (
-                    <span className="badge badge-warning" id="cartcount">
+                    <span className=" badge badge-warning " id="cartcount">
                       {user.cart.count}
                     </span>
                   )}
