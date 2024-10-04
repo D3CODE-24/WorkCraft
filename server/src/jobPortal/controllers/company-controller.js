@@ -1,7 +1,7 @@
 import { getDataUri, cloudinary } from "#utils";
 import { CompanyModel as Company } from "#jobPortal/models";
 
-const registerCompany = async (req, res) => {
+const registerCompany = asyncErrorHandler(async (req, res) => {
   try {
     const { companyName } = req.body;
     if (!companyName) {
@@ -30,8 +30,8 @@ const registerCompany = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-};
-const getCompany = async (req, res) => {
+});
+const getCompany = asyncErrorHandler(async (req, res) => {
   try {
     const userId = req.id; // logged in user id
     const companies = await Company.find({ userId });
@@ -48,9 +48,9 @@ const getCompany = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-};
+});
 // get company by id
-const getCompanyById = async (req, res) => {
+const getCompanyById = asyncErrorHandler(async (req, res) => {
   try {
     const companyId = req.params.id;
     const company = await Company.findById(companyId);
@@ -67,8 +67,8 @@ const getCompanyById = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-};
-const updateCompany = async (req, res) => {
+});
+const updateCompany = asyncErrorHandler(async (req, res) => {
   try {
     const { name, description, website, location } = req.body;
 
@@ -97,7 +97,7 @@ const updateCompany = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-};
+});
 
 const companyController = {
   registerCompany,
@@ -107,4 +107,3 @@ const companyController = {
 };
 
 export default companyController;
-

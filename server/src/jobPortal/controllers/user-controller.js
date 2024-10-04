@@ -2,8 +2,9 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { getDataUri, cloudinary } from "#utils";
 import { UserModel as User } from "#jobPortal/models";
+import { asyncErrorHandler, ErrorHandler } from "#ecommerece/middlewares";
 
-const register = async (req, res) => {
+const register = asyncErrorHandler(async (req, res) => {
   try {
     const { fullname, email, phoneNumber, password, role } = req.body;
 
@@ -44,8 +45,8 @@ const register = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-};
-const login = async (req, res) => {
+});
+const login = asyncErrorHandler(async (req, res) => {
   try {
     const { email, password, role } = req.body;
 
@@ -108,8 +109,8 @@ const login = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-};
-const logout = async (req, res) => {
+});
+const logout = asyncErrorHandler(async (req, res) => {
   try {
     return res.status(200).cookie("token", "", { maxAge: 0 }).json({
       message: "Logged out successfully.",
@@ -118,8 +119,8 @@ const logout = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-};
-const updateProfile = async (req, res) => {
+});
+const updateProfile = asyncErrorHandler(async (req, res) => {
   try {
     const { fullname, email, phoneNumber, bio, skills } = req.body;
 
@@ -173,7 +174,7 @@ const updateProfile = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-};
+});
 
 const userController = {
   register,
@@ -182,4 +183,3 @@ const userController = {
   updateProfile,
 };
 export default userController;
-

@@ -1,6 +1,7 @@
 import { JobModel as Job } from "#jobPortal/models";
+import { asyncErrorHandler, ErrorHandler } from "#ecommerece/middlewares";
 // admin post krega job
-const postJob = async (req, res) => {
+const postJob = asyncErrorHandler(async (req, res) => {
   try {
     const {
       title,
@@ -51,9 +52,9 @@ const postJob = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-};
+});
 // student k liye
-const getAllJobs = async (req, res) => {
+const getAllJobs = asyncErrorHandler(async (req, res) => {
   try {
     const keyword = req.query.keyword || "";
     const query = {
@@ -80,9 +81,9 @@ const getAllJobs = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-};
+});
 // student
-const getJobById = async (req, res) => {
+const getJobById = asyncErrorHandler(async (req, res) => {
   try {
     const jobId = req.params.id;
     const job = await Job.findById(jobId).populate({
@@ -98,9 +99,9 @@ const getJobById = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-};
+});
 // admin kitne job create kra hai abhi tk
-const getAdminJobs = async (req, res) => {
+const getAdminJobs = asyncErrorHandler(async (req, res) => {
   try {
     const adminId = req.id;
     const jobs = await Job.find({ created_by: adminId }).populate({
@@ -120,7 +121,7 @@ const getAdminJobs = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-};
+});
 
 const jobController = {
   postJob,

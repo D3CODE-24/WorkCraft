@@ -3,7 +3,9 @@ import {
   JobModel as Job,
 } from "#jobPortal/models";
 
-const applyJob = async (req, res) => {
+import { asyncErrorHandler, ErrorHandler } from "#ecommerece/middlewares";
+
+const applyJob = asyncErrorHandler(async (req, res) => {
   try {
     const userId = req.id;
     const jobId = req.params.id;
@@ -49,8 +51,8 @@ const applyJob = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-};
-const getAppliedJobs = async (req, res) => {
+});
+const getAppliedJobs = asyncErrorHandler(async (req, res) => {
   try {
     const userId = req.id;
     const application = await Application.find({ applicant: userId })
@@ -76,9 +78,9 @@ const getAppliedJobs = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-};
+});
 // admin dekhega kitna user ne apply kiya hai
-const getApplicants = async (req, res) => {
+const getApplicants = asyncErrorHandler(async (req, res) => {
   try {
     const jobId = req.params.id;
     const job = await Job.findById(jobId).populate({
@@ -101,8 +103,8 @@ const getApplicants = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-};
-const updateStatus = async (req, res) => {
+});
+const updateStatus = asyncErrorHandler(async (req, res) => {
   try {
     const { status } = req.body;
     const applicationId = req.params.id;
@@ -133,7 +135,7 @@ const updateStatus = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-};
+});
 
 const applicationController = {
   applyJob,
@@ -142,4 +144,3 @@ const applicationController = {
   updateStatus,
 };
 export default applicationController;
-
