@@ -1,4 +1,5 @@
 import React from "react";
+import { Route, Routes } from "react-router-dom";
 import axios from "../axios";
 import { useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
@@ -9,6 +10,10 @@ import categories from "@/categories";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProducts } from "../redux/features-mp/productSlice";
 import MP_ProductPreview from "@/components/MP_ProductPreview";
+import NewProduct from "./NewProduct";
+import ProductPage from "./ProductPage";
+import MP_Category from "./MP-Category";
+
 
 const Marketplace = () => {
   const dispatch = useDispatch();
@@ -20,6 +25,7 @@ const Marketplace = () => {
   return (
     <div>
       <MP_Navbar />
+
       <img
         src=" https://res.cloudinary.com/learn-code-10/image/upload/v1653947013/yqajnhqf7usk56zkwqi5.png "
         className="w-full"
@@ -28,7 +34,9 @@ const Marketplace = () => {
         <h1 className="text-2xl font-medium">Latest Products</h1>
         <div className="d-flex justify-content-center flex-wrap">
           {lastProducts.map((product) => (
-            <MP_ProductPreview {...product} />
+            <Link to="/product/:id">
+              <MP_ProductPreview {...product} />
+            </Link>
           ))}
         </div>
         <div>

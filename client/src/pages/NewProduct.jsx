@@ -37,7 +37,7 @@ function NewProduct() {
       ({ data }) => {
         if (data.length > 0) {
           setTimeout(() => {
-            navigate("/marketplace");
+            navigate("/");
           }, 1500);
         }
       }
@@ -69,7 +69,7 @@ function NewProduct() {
           <Form style={{ width: "100%" }} onSubmit={handleSubmit}>
             <h1 className="mt-4 text-xl font-medium mb-4">Create a product</h1>
             {isSuccess && (
-              <Alert variant="success">Product created with succcess</Alert>
+              <Alert variant="success">Product created succesfully!</Alert>
             )}
             {isError && <Alert variant="danger">{error.data}</Alert>}
             <Form.Group className="mb-3">
