@@ -9,10 +9,7 @@ const register = asyncErrorHandler(async (req, res) => {
     const { fullname, email, phoneNumber, password, role } = req.body;
 
     if (!fullname || !email || !phoneNumber || !password || !role) {
-      return res.status(400).json({
-        message: "Something is missing",
-        success: false,
-      });
+      return new ErrorHandler(400, "Something is missing");
     }
     const file = req.file;
     const fileUri = getDataUri(file);
@@ -20,10 +17,7 @@ const register = asyncErrorHandler(async (req, res) => {
 
     const user = await User.findOne({ email });
     if (user) {
-      return res.status(400).json({
-        message: "User already exist with this email.",
-        success: false,
-      });
+      return new ErrorHandler(400, "User already exist with this email.");
     }
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -43,7 +37,7 @@ const register = asyncErrorHandler(async (req, res) => {
       success: true,
     });
   } catch (error) {
-    console.log(error);
+    return new ErrorHandler(500, error);
   }
 });
 const login = asyncErrorHandler(async (req, res) => {
@@ -51,31 +45,19 @@ const login = asyncErrorHandler(async (req, res) => {
     const { email, password, role } = req.body;
 
     if (!email || !password || !role) {
-      return res.status(400).json({
-        message: "Something is missing",
-        success: false,
-      });
+      return new ErrorHandler(400, "Something is missing");
     }
     let user = await User.findOne({ email });
     if (!user) {
-      return res.status(400).json({
-        message: "Incorrect email or password.",
-        success: false,
-      });
+      return new ErrorHandler(400, "Incorrect email or password.");
     }
     const isPasswordMatch = await bcrypt.compare(password, user.password);
     if (!isPasswordMatch) {
-      return res.status(400).json({
-        message: "Incorrect email or password.",
-        success: false,
-      });
+      return new ErrorHandler(400, "Incorrect email or password.");
     }
     // check role is correct or not
     if (role !== user.role) {
-      return res.status(400).json({
-        message: "Account doesn't exist with current role.",
-        success: false,
-      });
+      return new ErrorHandler(400, "Account doesn't exist with current role.");
     }
 
     const tokenData = {
@@ -107,7 +89,7 @@ const login = asyncErrorHandler(async (req, res) => {
         success: true,
       });
   } catch (error) {
-    console.log(error);
+    return new ErrorHandler(500, error);
   }
 });
 const logout = asyncErrorHandler(async (req, res) => {
@@ -117,7 +99,7 @@ const logout = asyncErrorHandler(async (req, res) => {
       success: true,
     });
   } catch (error) {
-    console.log(error);
+    return new ErrorHandler(500, error);
   }
 });
 const updateProfile = asyncErrorHandler(async (req, res) => {
@@ -137,10 +119,7 @@ const updateProfile = asyncErrorHandler(async (req, res) => {
     let user = await User.findById(userId);
 
     if (!user) {
-      return res.status(400).json({
-        message: "User not found.",
-        success: false,
-      });
+      return new ErrorHandler(400, "User not found.");
     }
     // updating data
     if (fullname) user.fullname = fullname;
@@ -172,7 +151,7 @@ const updateProfile = asyncErrorHandler(async (req, res) => {
       success: true,
     });
   } catch (error) {
-    console.log(error);
+    return new ErrorHandler(500, error);
   }
 });
 
