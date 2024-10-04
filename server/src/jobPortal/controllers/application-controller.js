@@ -10,10 +10,7 @@ const applyJob = asyncErrorHandler(async (req, res) => {
     const userId = req.id;
     const jobId = req.params.id;
     if (!jobId) {
-      return res.status(400).json({
-        message: "Job id is required.",
-        success: false,
-      });
+      return new ErrorHandler(400, "Job id is required.");
     }
     // check if the user has already applied for the job
     const existingApplication = await Application.findOne({
@@ -22,19 +19,13 @@ const applyJob = asyncErrorHandler(async (req, res) => {
     });
 
     if (existingApplication) {
-      return res.status(400).json({
-        message: "You have already applied for this jobs",
-        success: false,
-      });
+      return new ErrorHandler(400, "You have already applied for this jobs");
     }
 
     // check if the jobs exists
     const job = await Job.findById(jobId);
     if (!job) {
-      return res.status(404).json({
-        message: "Job not found",
-        success: false,
-      });
+      return new ErrorHandler(404, "Job not found");
     }
     // create a new application
     const newApplication = await Application.create({
@@ -49,7 +40,7 @@ const applyJob = asyncErrorHandler(async (req, res) => {
       success: true,
     });
   } catch (error) {
-    console.log(error);
+    return new ErrorHandler(500, error);
   }
 });
 const getAppliedJobs = asyncErrorHandler(async (req, res) => {
@@ -66,17 +57,14 @@ const getAppliedJobs = asyncErrorHandler(async (req, res) => {
         },
       });
     if (!application) {
-      return res.status(404).json({
-        message: "No Applications",
-        success: false,
-      });
+      return new ErrorHandler(404, "No Applications");
     }
     return res.status(200).json({
       application,
       success: true,
     });
   } catch (error) {
-    console.log(error);
+    return new ErrorHandler(500, error);
   }
 });
 // admin dekhega kitna user ne apply kiya hai
@@ -91,17 +79,14 @@ const getApplicants = asyncErrorHandler(async (req, res) => {
       },
     });
     if (!job) {
-      return res.status(404).json({
-        message: "Job not found.",
-        success: false,
-      });
+      return new ErrorHandler(404, "Job not found.");
     }
     return res.status(200).json({
       job,
       succees: true,
     });
   } catch (error) {
-    console.log(error);
+    return new ErrorHandler(500, error);
   }
 });
 const updateStatus = asyncErrorHandler(async (req, res) => {
@@ -109,19 +94,13 @@ const updateStatus = asyncErrorHandler(async (req, res) => {
     const { status } = req.body;
     const applicationId = req.params.id;
     if (!status) {
-      return res.status(400).json({
-        message: "status is required",
-        success: false,
-      });
+      return new ErrorHandler(400, "status is required");
     }
 
     // find the application by applicantion id
     const application = await Application.findOne({ _id: applicationId });
     if (!application) {
-      return res.status(404).json({
-        message: "Application not found.",
-        success: false,
-      });
+      return new ErrorHandler(404, "Application not found.");
     }
 
     // update the status
@@ -133,7 +112,7 @@ const updateStatus = asyncErrorHandler(async (req, res) => {
       success: true,
     });
   } catch (error) {
-    console.log(error);
+    return new ErrorHandler(500, error);
   }
 });
 

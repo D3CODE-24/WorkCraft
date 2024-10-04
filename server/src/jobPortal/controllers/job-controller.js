@@ -27,10 +27,7 @@ const postJob = asyncErrorHandler(async (req, res) => {
       !position ||
       !companyId
     ) {
-      return res.status(400).json({
-        message: "Somethin is missing.",
-        success: false,
-      });
+      return new ErrorHandler(400, "All fields are required.");
     }
     const job = await Job.create({
       title,
@@ -50,7 +47,7 @@ const postJob = asyncErrorHandler(async (req, res) => {
       success: true,
     });
   } catch (error) {
-    console.log(error);
+    return new ErrorHandler(500, error);
   }
 });
 // student k liye
@@ -69,17 +66,14 @@ const getAllJobs = asyncErrorHandler(async (req, res) => {
       })
       .sort({ createdAt: -1 });
     if (!jobs) {
-      return res.status(404).json({
-        message: "Jobs not found.",
-        success: false,
-      });
+      return new ErrorHandler(404, "No Jobs found.");
     }
     return res.status(200).json({
       jobs,
       success: true,
     });
   } catch (error) {
-    console.log(error);
+    return new ErrorHandler(500, error);
   }
 });
 // student
@@ -90,14 +84,11 @@ const getJobById = asyncErrorHandler(async (req, res) => {
       path: "applications",
     });
     if (!job) {
-      return res.status(404).json({
-        message: "Jobs not found.",
-        success: false,
-      });
+      return new ErrorHandler(404, "Job not found.");
     }
     return res.status(200).json({ job, success: true });
   } catch (error) {
-    console.log(error);
+    return new ErrorHandler(500, error);
   }
 });
 // admin kitne job create kra hai abhi tk
@@ -109,17 +100,14 @@ const getAdminJobs = asyncErrorHandler(async (req, res) => {
       createdAt: -1,
     });
     if (!jobs) {
-      return res.status(404).json({
-        message: "Jobs not found.",
-        success: false,
-      });
+      return new ErrorHandler(404, "No Jobs found.");
     }
     return res.status(200).json({
       jobs,
       success: true,
     });
   } catch (error) {
-    console.log(error);
+    return new ErrorHandler(500, error);
   }
 });
 
