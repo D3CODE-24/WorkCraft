@@ -6,7 +6,7 @@ export const appApi = createApi({
   endpoints: (builder) => ({
     signup: builder.mutation({
       query: (user) => ({
-        url: "/users/signup",
+        url: "/user/signup",
         method: "POST",
         body: user,
       }),
@@ -14,7 +14,7 @@ export const appApi = createApi({
 
     login: builder.mutation({
       query: (user) => ({
-        url: "/users/login",
+        url: "/user/login",
         method: "POST",
         body: user,
       }),

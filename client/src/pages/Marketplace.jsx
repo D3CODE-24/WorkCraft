@@ -10,9 +10,6 @@ import categories from "@/categories";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProducts } from "../redux/features-mp/productSlice";
 import MP_ProductPreview from "@/components/MP_ProductPreview";
-import NewProduct from "./NewProduct";
-import ProductPage from "./ProductPage";
-import MP_Category from "./MP-Category";
 
 
 const Marketplace = () => {
