@@ -17,6 +17,7 @@ import Loading from "@/components/Loading";
 import SimilarProduct from "@/components/SimilarProduct";
 import { LinkContainer } from "react-router-bootstrap";
 import { useAddToCartMutation } from "@/redux/services-mp/appApi";
+import ToastMessage from "@/components/ToastMessage";
 
 function ProductPage() {
   const { id } = useParams();
