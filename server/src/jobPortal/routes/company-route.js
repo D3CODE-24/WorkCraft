@@ -5,13 +5,14 @@ import { singleUpload } from "#jobPortal/middlewares";
 
 const router = express.Router();
 
-router
-  .route("/register")
-  .post(isAuthenticated, companyController.registerCompany);
-router.route("/get").get(isAuthenticated, companyController.getCompany);
-router.route("/get/:id").get(isAuthenticated, companyController.getCompanyById);
-router
-  .route("/update/:id")
-  .put(isAuthenticated, singleUpload, companyController.updateCompany);
+router.post("/register", isAuthenticated, companyController.registerCompany);
+router.get("/get", isAuthenticated, companyController.getCompany);
+router.get("/get/:id", isAuthenticated, companyController.getCompanyById);
+router.put(
+  "/update/:id",
+  isAuthenticated,
+  singleUpload,
+  companyController.updateCompany,
+);
 
 export default router;
