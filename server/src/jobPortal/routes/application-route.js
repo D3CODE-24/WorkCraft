@@ -4,13 +4,17 @@ import { applicationController } from "#jobPortal/controllers";
 
 const router = express.Router();
 
-router.route("/apply/:id").get(isAuthenticated, applicationController.applyJob);
-router.route("/get").get(isAuthenticated, applicationController.getAppliedJobs);
-router
-  .route("/:id/applicants")
-  .get(isAuthenticated, applicationController.getApplicants);
-router
-  .route("/status/:id/update")
-  .post(isAuthenticated, applicationController.updateStatus);
+router.get("/apply/:id", isAuthenticated, applicationController.applyJob);
+router.get("/get", isAuthenticated, applicationController.getAppliedJobs);
+router.get(
+  "/:id/applicants",
+  isAuthenticated,
+  applicationController.getApplicants,
+);
+router.post(
+  "/status/:id/update",
+  isAuthenticated,
+  applicationController.updateStatus,
+);
 
 export default router;
