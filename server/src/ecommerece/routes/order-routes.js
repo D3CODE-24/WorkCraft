@@ -3,9 +3,8 @@ import { Router } from "express";
 
 const OrderRouter = Router();
 
-OrderRouter.post("/", OrderController.createOrder);
+OrderRouter.post("/create-order", OrderController.cerateOrder);
 OrderRouter.get("/", OrderController.getOrders);
-OrderRouter.get("/:id", OrderController.getOrder);
-OrderRouter.post("/:id/ship", OrderController.shipOder);
+OrderRouter.post("/:id/mark-shipped", OrderController.shipping);
 
 export default OrderRouter;
