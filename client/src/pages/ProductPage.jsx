@@ -21,7 +21,7 @@ import ToastMessage from "@/components/ToastMessage";
 
 function ProductPage() {
   const { id } = useParams();
-  //   const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user);
   const [product, setProduct] = useState(null);
   const [similar, setSimilar] = useState(null);
   const [addToCart, { isSuccess }] = useAddToCartMutation();
@@ -79,40 +79,36 @@ function ProductPage() {
           <p style={{ textAlign: "justify" }} className="py-3 text-lg">
             <strong>Description:</strong> {product.description}
           </p>
-          {true &&
-            true && ( //user here
-              <ButtonGroup
-                className="mb-3 rounded-2xl"
-                style={{ width: "90%" }}
+          {user && !user.isAdmin && (
+            <ButtonGroup className="mb-3 rounded-2xl" style={{ width: "90%" }}>
+              <Form.Select
+                className="rounded-2xl"
+                size="lg"
+                style={{ width: "40%", borderRadius: "0" }}
               >
-                <Form.Select
-                  className="rounded-2xl"
-                  size="lg"
-                  style={{ width: "40%", borderRadius: "0" }}
-                >
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                </Form.Select>
-                <Button
-                  size="lg"
-                  onClick={() =>
-                    addToCart({
-                      userId: "default", //user name here
-                      productId: id,
-                      price: product.price,
-                      image: product.pictures[0].url,
-                    })
-                  }
-                >
-                  Add to cart
-                </Button>
-              </ButtonGroup>
-            )}
-          {true &&
-            true && ( //user here
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </Form.Select>
+              <Button
+                size="lg"
+                onClick={() =>
+                  addToCart({
+                    userId: user._id, 
+                    productId: id,
+                    price: product.price,
+                    image: product.pictures[0].url,
+                  })
+                }
+              >
+                Add to cart
+              </Button>
+            </ButtonGroup>
+          )}
+          {user &&
+            user.isAdmin && ( 
               <LinkContainer to={`/product/${product._id}/edit`}>
                 <Button size="lg">Edit Product</Button>
               </LinkContainer>

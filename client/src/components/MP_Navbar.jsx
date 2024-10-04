@@ -8,7 +8,6 @@ import { logout } from "../redux/features-mp/userSlice";
 function MP_Navbar() {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
- 
 
   function handleLogout() {
     dispatch(logout());
@@ -18,7 +17,7 @@ function MP_Navbar() {
     <Navbar bg="light" expand="lg">
       <Container>
         <LinkContainer to="/">
-          <Navbar.Brand>Ecomern</Navbar.Brand>
+          <Navbar.Brand>Ecommmerce</Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -27,6 +26,18 @@ function MP_Navbar() {
             {!user && (
               <LinkContainer to="/login">
                 <Nav.Link>Login</Nav.Link>
+              </LinkContainer>
+            )}
+            {user && !user.isAdmin && (
+              <LinkContainer to="/cart">
+                <Nav.Link>
+                  <i className="fas fa-shopping-cart"></i>
+                  {user?.cart.count > 0 && (
+                    <span className="badge badge-warning" id="cartcount">
+                      {user.cart.count}
+                    </span>
+                  )}
+                </Nav.Link>
               </LinkContainer>
             )}
 

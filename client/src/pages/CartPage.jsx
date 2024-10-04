@@ -5,7 +5,7 @@ import {
   useIncreaseCartProductMutation,
   useDecreaseCartProductMutation,
   useRemoveFromCartMutation,
-} from "../redux/services-mp/appApi"
+} from "../redux/services-mp/appApi";
 
 function CartPage() {
   const user = useSelector((state) => state.user);
@@ -15,7 +15,6 @@ function CartPage() {
   const [increaseCart] = useIncreaseCartProductMutation();
   const [decreaseCart] = useDecreaseCartProductMutation();
   const [removeFromCart, { isLoading }] = useRemoveFromCartMutation();
-
   function handleDecrease(product) {
     const quantity = user.cart.count;
     if (quantity <= 0) return alert("Can't proceed");
@@ -27,14 +26,10 @@ function CartPage() {
       <Row>
         <Col>
           <h1 className="pt-2 h3">Shopping cart</h1>
-          {cart.length == 0 ? (
+          {cart.length == 0 && (
             <Alert variant="info">
               Shopping cart is empty. Add products to your cart
             </Alert>
-          ) : (
-            <Elements stripe={stripePromise}>
-              <CheckoutForm />
-            </Elements>
           )}
         </Col>
         {cart.length > 0 && (
