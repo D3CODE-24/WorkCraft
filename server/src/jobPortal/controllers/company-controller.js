@@ -7,17 +7,11 @@ const registerCompany = asyncErrorHandler(async (req, res) => {
   try {
     const { companyName } = req.body;
     if (!companyName) {
-      return res.status(400).json({
-        message: "Company name is required.",
-        success: false,
-      });
+      return new ErrorHandler(400, "Company name is required.");
     }
     let company = await Company.findOne({ name: companyName });
     if (company) {
-      return res.status(400).json({
-        message: "You can't register same company.",
-        success: false,
-      });
+      return new ErrorHandler(400, "You can't register same company.");
     }
     company = await Company.create({
       name: companyName,
@@ -30,7 +24,7 @@ const registerCompany = asyncErrorHandler(async (req, res) => {
       success: true,
     });
   } catch (error) {
-    console.log(error);
+    return new ErrorHandler(500, error);
   }
 });
 const getCompany = asyncErrorHandler(async (req, res) => {
@@ -38,17 +32,14 @@ const getCompany = asyncErrorHandler(async (req, res) => {
     const userId = req.id; // logged in user id
     const companies = await Company.find({ userId });
     if (!companies) {
-      return res.status(404).json({
-        message: "Companies not found.",
-        success: false,
-      });
+      return new ErrorHandler(404, "Companies not found.");
     }
     return res.status(200).json({
       companies,
       success: true,
     });
   } catch (error) {
-    console.log(error);
+    return new ErrorHandler(500, error);
   }
 });
 // get company by id
@@ -57,17 +48,14 @@ const getCompanyById = asyncErrorHandler(async (req, res) => {
     const companyId = req.params.id;
     const company = await Company.findById(companyId);
     if (!company) {
-      return res.status(404).json({
-        message: "Company not found.",
-        success: false,
-      });
+      return new ErrorHandler(404, "Company not found.");
     }
     return res.status(200).json({
       company,
       success: true,
     });
   } catch (error) {
-    console.log(error);
+    return new ErrorHandler(500, error);
   }
 });
 const updateCompany = asyncErrorHandler(async (req, res) => {
@@ -87,17 +75,14 @@ const updateCompany = asyncErrorHandler(async (req, res) => {
     });
 
     if (!company) {
-      return res.status(404).json({
-        message: "Company not found.",
-        success: false,
-      });
+      return new ErrorHandler(404, "Company not found.");
     }
     return res.status(200).json({
       message: "Company information updated.",
       success: true,
     });
   } catch (error) {
-    console.log(error);
+    return new ErrorHandler(500, error);
   }
 });
 
