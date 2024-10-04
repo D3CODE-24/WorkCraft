@@ -53,6 +53,7 @@ const decreaseCart = asyncErrorHandler(async (req, res) => {
       await user.save();
       res.status(200).json(user);
     } else {
+      userCart.count -= 1;
       delete userCart[productId];
       user.cart = userCart;
       user.markModified("cart");
