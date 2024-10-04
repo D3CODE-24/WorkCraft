@@ -18,10 +18,9 @@ const signup = asyncErrorHandler(async (req, res) => {
 const login = asyncErrorHandler(async (req, res) => {
   const { email, password } = req.body;
   try {
-    const user = await User.find({ email, password });
+    const user = await User.findByCredentials(email, password);
     res.json(user);
   } catch (e) {
-    console.log(e);
     return new ErrorHandler(400, e.message);
   }
 });

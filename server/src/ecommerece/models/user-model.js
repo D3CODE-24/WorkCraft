@@ -45,11 +45,11 @@ const UserSchema = mongoose.Schema(
 
     orders: [{ type: mongoose.Schema.Types.ObjectId, ref: "Order" }],
   },
-  { minimize: false },
+  { minimize: false }
 );
 
 UserSchema.statics.findByCredentials = async function (email, password) {
-  const user = await User.findOne({ email });
+  const user = await this.findOne({ email });
   if (!user) throw new Error("invalid credentials");
   const isSamePassword = bcrypt.compareSync(password, user.password);
   if (isSamePassword) return user;

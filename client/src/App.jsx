@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import { useDispatch, useSelector } from "react-redux";
 import NavbarJobs from "./components/shared/NavbarJobs"; // Import job-specific navbar
 import Home from "./pages/Home";
 import Jobs from "./pages/JobsPortal";
@@ -17,6 +18,7 @@ import MP_Signup from "./pages/MP-Signup";
 
 function App() {
   const location = useLocation();
+  const user = useSelector((state) => state.user);
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -28,10 +30,15 @@ function App() {
           <Route path="/jobs/*" element={<Jobs />} />
           <Route path="/marketplace" element={<Marketplace />} />
           <Route path="/learn" element={<Learn />} />
-          <Route path="/login" element={<MP_Login />} />
+
           <Route path="/product/:id" element={<ProductPage />} />
           <Route path="/category/:category" element={<MP_Category />} />
-          <Route path="/signup" element={<MP_Signup />} />
+          {!user && (
+            <>
+              <Route path="/login" element={<MP_Login />} />
+              <Route path="/signup" element={<MP_Signup />} />
+            </>
+          )}
           <Route path="/new-product" element={<NewProduct />} />
           <Route path="/CartPage" element={<CartPage />} />
         </Routes>
