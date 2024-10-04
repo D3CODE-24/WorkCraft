@@ -29,9 +29,9 @@ const JobsPortal = () => {
       <Route path="/admin/companies" element={<ProtectedRoute><Companies/></ProtectedRoute>}/>
       <Route path="/admin/companies/create" element={<ProtectedRoute><CompanyCreate/></ProtectedRoute>}/>
       <Route path="/admin/companies/:id" element={<ProtectedRoute><CompanySetup/></ProtectedRoute>}/>
-      <Route path="/admin/jobs" element={<ProtectedRoute><AdminJobs/></ProtectedRoute>}/>
-      <Route path="/admin/jobs/create" element={<ProtectedRoute><PostJob/></ProtectedRoute>}/>
-      <Route path="/admin/jobs/:id/applicants" element={<ProtectedRoute><Applicants/></ProtectedRoute>}/>
+      <Route path="/admin/new-jobs" element={<ProtectedRoute><AdminJobs/></ProtectedRoute>}/>
+      <Route path="/admin/new-jobs/create" element={<ProtectedRoute><PostJob/></ProtectedRoute>}/>
+      <Route path="/admin/new-jobs/:id/applicants" element={<ProtectedRoute><Applicants/></ProtectedRoute>}/>
     </Routes>
   );
 };
