@@ -2,8 +2,23 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const appApi = createApi({
   reducerPath: "appApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/api" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/api/ecom" }),
   endpoints: (builder) => ({
+    signup: builder.mutation({
+      query: (user) => ({
+        url: "/users/signup",
+        method: "POST",
+        body: user,
+      }),
+    }),
+
+    login: builder.mutation({
+      query: (user) => ({
+        url: "/users/login",
+        method: "POST",
+        body: user,
+      }),
+    }),
     // creating product
     createProduct: builder.mutation({
       query: (product) => ({
@@ -31,57 +46,59 @@ export const appApi = createApi({
     }),
     addToCart: builder.mutation({
       query: (cartInfo) => ({
-          url: "/products/add-to-cart",
-          body: cartInfo,
-          method: "POST",
+        url: "/products/add-to-cart",
+        body: cartInfo,
+        method: "POST",
       }),
-  }),
-  // remove from cart
-  removeFromCart: builder.mutation({
+    }),
+    // remove from cart
+    removeFromCart: builder.mutation({
       query: (body) => ({
-          url: "/products/remove-from-cart",
-          body,
-          method: "POST",
+        url: "/products/remove-from-cart",
+        body,
+        method: "POST",
       }),
-  }),
+    }),
 
-  // increase cart
-  increaseCartProduct: builder.mutation({
+    // increase cart
+    increaseCartProduct: builder.mutation({
       query: (body) => ({
-          url: "/products/increase-cart",
-          body,
-          method: "POST",
+        url: "/products/increase-cart",
+        body,
+        method: "POST",
       }),
-  }),
+    }),
 
-  // decrease cart
-  decreaseCartProduct: builder.mutation({
+    // decrease cart
+    decreaseCartProduct: builder.mutation({
       query: (body) => ({
-          url: "/products/decrease-cart",
-          body,
-          method: "POST",
+        url: "/products/decrease-cart",
+        body,
+        method: "POST",
       }),
-  }),
-  // create order
-  createOrder: builder.mutation({
+    }),
+    // create order
+    createOrder: builder.mutation({
       query: (body) => ({
-          url: "/orders",
-          method: "POST",
-          body,
+        url: "/orders",
+        method: "POST",
+        body,
       }),
+    }),
   }),
-}),
 });
 
 export const {
-useCreateProductMutation,
-useAddToCartMutation,
-useRemoveFromCartMutation,
-useIncreaseCartProductMutation,
-useDecreaseCartProductMutation,
-useCreateOrderMutation,
-useDeleteProductMutation,
-useUpdateProductMutation,
+  useSignupMutation,
+  useLoginMutation,
+  useCreateProductMutation,
+  useAddToCartMutation,
+  useRemoveFromCartMutation,
+  useIncreaseCartProductMutation,
+  useDecreaseCartProductMutation,
+  useCreateOrderMutation,
+  useDeleteProductMutation,
+  useUpdateProductMutation,
 } = appApi;
 
 export default appApi;

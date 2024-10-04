@@ -21,6 +21,9 @@ function MP_Navbar() {
             <LinkContainer to="/orders">
               <NavDropdown.Item href="#action/3.1">My Orders</NavDropdown.Item>
             </LinkContainer>
+            <LinkContainer to="/login">
+              <NavDropdown.Item href="#action/3.1">Login</NavDropdown.Item>
+            </LinkContainer>
             <LinkContainer to="/marketplace">
               <NavDropdown.Item >Logout</NavDropdown.Item>
             </LinkContainer>
