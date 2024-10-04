@@ -29,16 +29,16 @@ app.use(
   }),
 );
 
-app.use(ROUTE_PREFIX + "/products", ProductRouter);
-app.use(ROUTE_PREFIX + "/cart", CartRouter);
-app.use(ROUTE_PREFIX + "/order", OrderRouter);
-app.use(ROUTE_PREFIX + "/images", ImageRouter);
-app.use(ROUTE_PREFIX + "/user", EcommerceUserRouter);
+app.use(ROUTE_PREFIX + "/ecom/products", ProductRouter);
+app.use(ROUTE_PREFIX + "/ecom/cart", CartRouter);
+app.use(ROUTE_PREFIX + "/ecom/order", OrderRouter);
+app.use(ROUTE_PREFIX + "/ecom/images", ImageRouter);
+app.use(ROUTE_PREFIX + "/ecom/user", EcommerceUserRouter);
 
-app.use(ROUTE_PREFIX + "/application", ApplicationRouter);
-app.use(ROUTE_PREFIX + "/company", CompanyRouter);
-app.use(ROUTE_PREFIX + "/job", JobRouter);
-app.use(ROUTE_PREFIX + "/user", JobPortalUserRouter);
+app.use(ROUTE_PREFIX + "/jobPortal/application", ApplicationRouter);
+app.use(ROUTE_PREFIX + "/jobPortal/company", CompanyRouter);
+app.use(ROUTE_PREFIX + "/jobPortal/job", JobRouter);
+app.use(ROUTE_PREFIX + "/jobPortal/user", JobPortalUserRouter);
 app.use(errorHandler);
 
 export default app;
