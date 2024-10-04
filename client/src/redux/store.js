@@ -1,50 +1,29 @@
+import { configureStore } from "@reduxjs/toolkit";
+import productSlice from "./features-mp/productSlice";
+import userSlice from "./features-mp/userSlice";
+import appApi from "./services-mp/appApi";
+import storage from "redux-persist/lib/storage";
+import { combineReducers } from "redux";
+import { persistReducer } from "redux-persist";
 
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import authSlice from "./authSlice";
-import jobSlice from "./jobSlice";
-import companySlice from "./companySlice";
-import applicationSlice from "./applicationSlice";  // Importing applicationSlice
-import {
-    persistStore,
-    persistReducer,
-    FLUSH,
-    REHYDRATE,
-    PAUSE,
-    PERSIST,
-    PURGE,
-    REGISTER,
-} from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
-
-// Config for persisting state
-const persistConfig = {
-    key: 'root',
-    version: 1,
-    storage,
-};
-
-// Combine all reducers
-const rootReducer = combineReducers({
-    auth: authSlice,
-    job: jobSlice,
-    company: companySlice,
-    application: applicationSlice  // Adding applicationSlice to rootReducer
+const reducer = combineReducers({
+    user: userSlice,
+    products: productSlice,
+    [appApi.reducerPath]: appApi.reducer,
 });
 
-// Create a persisted reducer
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+const persistConfig = {
+    key: "root",
+    storage,
+    blacklist: [appApi.reducerPath], // Only exclude the API state if needed
+};
 
-// Configure the store with persistedReducer and necessary middlewares
+const persistedReducer = persistReducer(persistConfig, reducer);
+
 const store = configureStore({
     reducer: persistedReducer,
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware({
-            serializableCheck: {
-                ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-            },
-        }),
+        getDefaultMiddleware().concat(appApi.middleware),
 });
 
-// Export the configured store and persistor
-export const persistor = persistStore(store);
 export default store;

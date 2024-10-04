@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import NavbarJobs from "./components/shared/NavbarJobs"; // Import job-specific navbar
 import Home from "./pages/Home";
-import JobsPortal from "./pages/JobsPortal"
+import JobsPortal from "./pages/JobsPortal";
 import Marketplace from "./pages/Marketplace";
 import Learn from "./pages/Learn";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -40,7 +40,7 @@ function App() {
             </>
           )}
           <Route path="/new-product" element={<NewProduct />} />
-          <Route path="/CartPage" element={<CartPage />} />
+          <Route path="/cart" element={<CartPage />} />
         </Routes>
       </main>
     </div>
