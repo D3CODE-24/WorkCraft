@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import cookieparser from "cookie-parser";
 
 import {
   ProductRouter,
@@ -22,6 +23,7 @@ const ROUTE_PREFIX = "/api";
 const app = express();
 
 app.use(express.json());
+app.use(cookieparser());
 app.use(
   cors({
     origin: "http://localhost:5173",
