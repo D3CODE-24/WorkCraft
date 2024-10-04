@@ -18,7 +18,7 @@ function MP_Login() {
         <Col md={6} className="login__form--container">
           <Form style={{ width: "100%" }} onSubmit={handleLogin}>
             <h1>Login to your account</h1>
-            {isError && <Alert variant="danger">{error.data}</Alert>}
+            {isError && <Alert variant="danger">{"Invalid Credentials"}</Alert>}   
             <Form.Group>
               <Form.Label>Email Address</Form.Label>
               <Form.Control
