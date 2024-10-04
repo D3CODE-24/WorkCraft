@@ -1,49 +1,62 @@
-import { OrderModel, UserModel } from "../models/models.js";
-import { ErrorHandler, asyncErrorHandler } from "#ecommerece/middlewares";
+import { OrderModel as Order, UserModel as User } from "#ecommerece/models";
+import { asyncErrorHandler, ErrorHandler } from "#ecommerece/middlewares";
 
-const createOrder = asyncErrorHandler(async (req, res) => {
-  const { userId } = req.body;
-  const user = await UserModel.findOne({ userId }).populate("cart");
-  const cart = user.cart;
+//creating an order
 
-  if (!cart) {
-    return new ErrorHandler(400, "Invalid user");
+const cerateOrder = asyncErrorHandler(async (req, res) => {
+  const { userId, cart, country, address } = req.body;
+  try {
+    const user = await User.findById(userId);
+    const order = await Order.create({
+      owner: user._id,
+      products: cart,
+      country,
+      address,
+    });
+    order.count = cart.count;
+    order.total = cart.total;
+    await order.save();
+    user.cart = { total: 0, count: 0 };
+    user.orders.push(order);
+    user.markModified("orders");
+    await user.save();
+    res.status(200).json(user);
+  } catch (e) {
+    return new ErrorHandler(400, e.message);
   }
-
-  const order = new OrderModel({
-    userId,
-    products: cart.items,
-    totalPrice: cart.totalPrice,
-    address: user.address,
-    country: user.country,
-  });
-  await order.save();
-
-  res.status(200).json(order);
 });
 
+// getting all orders;
 const getOrders = asyncErrorHandler(async (req, res) => {
-  const orders = await OrderModel.find();
-  res.status(200).json(orders);
+  try {
+    const orders = await Order.find().populate("owner", ["email", "name"]);
+    res.status(200).json(orders);
+  } catch (e) {
+    return new ErrorHandler(400, e.message);
+  }
 });
 
-const getOrder = asyncErrorHandler(async (req, res) => {
-  const order = await OrderModel.findById(req.params.id);
-  res.status(200).json(order);
+//shipping order
+
+const shipping = asyncErrorHandler(async (req, res) => {
+  const io = req.app.get("socketio");
+  const { ownerId } = req.body;
+  const { id } = req.params;
+  try {
+    const user = await User.findById(ownerId);
+    await Order.findByIdAndUpdate(id, { status: "shipped" });
+    const orders = await Order.find().populate("owner", ["email", "name"]);
+    await user.save();
+    res.status(200).json(orders);
+  } catch (e) {
+    return new ErrorHandler(400, e.message);
+  }
 });
 
-const shipOder = asyncErrorHandler(async (req, res) => {
-  const order = await OrderModel.findById(req.params.id);
-  order.status = "shipped";
-  await order.save();
-  res.status(200).json(order);
-});
-
-const OrderController = {
-  createOrder,
+const orderController = {
+  cerateOrder,
   getOrders,
-  getOrder,
-  shipOder,
+  shipping,
 };
 
-export default OrderController;
+export default orderController;
