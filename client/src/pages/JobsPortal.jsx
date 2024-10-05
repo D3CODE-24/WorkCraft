@@ -22,7 +22,6 @@ const JobsPortal = () => {
       <Route path="login" element={<Login />} />
       <Route path="signup" element={<Signup />} />
       <Route path="new-jobs" element={<Jobs/>} />
-      <Route path="browse" element={<Browse/>}/>
       <Route path="description/:id" element={<JobDescription/>}/>
       <Route path="/browse" element={<Browse/>}/>
       <Route path="/profile" element={<Profile/>}/>
