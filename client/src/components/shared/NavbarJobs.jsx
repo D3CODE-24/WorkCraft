@@ -29,24 +29,24 @@ const Navbar = () => {
         }
     }
     return (
-        <div className='bg-white'>
+        <div className='bg-[#0E1D31]'>
             <div className='flex items-center justify-between mx-auto max-w-7xl h-16'>
                 <div>
-                   <Link to="/"><h1 className='text-2xl font-bold'>Job<span className='text-[#F83002]'>Portal</span></h1></Link> 
+                   <Link to="/"><h1 className='text-2xl font-bold text-white'>Work<span className='text-[#EE4865]'>Craft</span></h1></Link> 
                 </div>
                 <div className='flex items-center gap-12'>
                     <ul className='flex font-medium items-center gap-5'>
                         {
                             user && user.role === 'recruiter' ? (
                                 <>
-                                    <li><Link to="/jobs/admin/companies">Companies</Link></li>
-                                    <li><Link to="/jobs/admin/new-jobs">Jobs</Link></li>
+                                    <li className="text-white font-bold"><Link to="/jobs/admin/companies">Companies</Link></li>
+                                    <li className='text-white font-bold'><Link to="/jobs/admin/new-jobs">Jobs</Link></li>
                                 </>
                             ) : (
                                 <>
-                                    <li><Link to="/jobs">Home</Link></li>
-                                    <li><Link to="/jobs/new-jobs">Jobs</Link></li>
-                                    <li><Link to="/jobs/browse">Browse</Link></li>
+                                    <li className='text-white'><Link to="/jobs">Home</Link></li>
+                                    <li class='text-white'><Link to="/jobs/new-jobs">Jobs</Link></li>
+                                    <li className='text-white'><Link to="/jobs/browse">Browse</Link></li>
                                 </>
                             )
                         }
@@ -57,7 +57,7 @@ const Navbar = () => {
                         !user ? (
                             <div className='flex items-center gap-2'>
                                 <Link to="/jobs/login"><Button variant="outline">Login</Button></Link>
-                                <Link to="/jobs/signup"><Button className="bg-[#6A38C2] hover:bg-[#5b30a6]">Signup</Button></Link>
+                                <Link to="/jobs/signup"><Button className="bg-[#EE4865] hover:bg-[#5b30a6]">Signup</Button></Link>
                             </div>
                         ) : (
                             <Popover>
