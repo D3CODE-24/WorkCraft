@@ -16,16 +16,16 @@ function MP_Login() {
     navigate("/marketplace");
   }
   return (
-    <Container>
+    <Container fluid className="pt-0 pr-0 pl-5 w-full -mt-6">
       <MP_Navbar />
       <Row>
         <Col md={6} className="login__form--container">
           <Form style={{ width: "100%" }} onSubmit={handleLogin}>
-            <h1>Login to your account</h1>
+            <h1 className="font-bold text-3xl mb-3">Login</h1>
             {isError && <Alert variant="danger">{"Invalid Credentials"}</Alert>}
             <Form.Group>
-              <Form.Label>Email Address</Form.Label>
-              <Form.Control
+              <Form.Label className="mb-3">Email Address</Form.Label>
+              <Form.Control className="mb-3"
                 type="email"
                 placeholder="Enter email"
                 value={email}
@@ -35,7 +35,7 @@ function MP_Login() {
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <Form.Label>Password</Form.Label>
+              <Form.Label className="mb-3">Password</Form.Label>
               <Form.Control
                 type="password"
                 placeholder="Enter Password"

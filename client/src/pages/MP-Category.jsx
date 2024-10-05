@@ -4,6 +4,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 import MP_ProductPreview from "@/components/MP_ProductPreview";
+import Pagination from "@/components/Pagination";
 import "./CategoryPage.css";
 
 function MP_Category() {
@@ -36,7 +37,7 @@ function MP_Category() {
 
   function ProductSearch({ _id, category, name, pictures }) {
     return (
-      <ProductPreview
+      <MP_ProductPreview
         _id={_id}
         category={category}
         name={name}
@@ -46,11 +47,11 @@ function MP_Category() {
   }
 
   return (
-    <div className="category-page-container">
+    <div className="category-page-container -mt-6 ">
       <div
         className={`pt-3 ${category}-banner-container category-banner-container`}
       >
-        <h1 className="text-center">
+        <h1 className="text-center mb-3 text-2xl font-medium">
           {category.charAt(0).toUpperCase() + category.slice(1)}
         </h1>
       </div>
@@ -62,14 +63,18 @@ function MP_Category() {
         />
       </div>
       {productsSearch.length === 0 ? (
-        <h1>No products to show</h1>
+        <h1 className="pl-3 text-xl">No products to show</h1>
       ) : (
         <Container>
           <Row>
             <Col md={{ span: 10, offset: 1 }}>
-              {productsSearch.map((product) => (
-                <MP_ProductPreview key={product._id} {...product} />
-              ))}
+              <Pagination
+                data={productsSearch}
+                RenderComponent={ProductSearch}
+                pageLimit={1}
+                dataLimit={5}
+                tablePagination={false}
+              />
             </Col>
           </Row>
         </Container>

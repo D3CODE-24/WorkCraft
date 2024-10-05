@@ -64,7 +64,7 @@ function NewProduct() {
   }
 
   return (
-    <Container className="box-border ">
+    <Container className="box-border -mt-6 ">
       <Row>
         <Col md={6} className="new-product__form--container">
           <Form style={{ width: "100%" }} onSubmit={handleSubmit}>
