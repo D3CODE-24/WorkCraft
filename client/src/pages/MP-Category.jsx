@@ -4,6 +4,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 import MP_ProductPreview from "@/components/MP_ProductPreview";
+import "./CategoryPage.css";
 
 function MP_Category() {
   const { category } = useParams();

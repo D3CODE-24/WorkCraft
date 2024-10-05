@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import axios from "../axios";
+import "./Marketplace.css"
 import { useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import MP_Navbar from "../components/MP_Navbar";
