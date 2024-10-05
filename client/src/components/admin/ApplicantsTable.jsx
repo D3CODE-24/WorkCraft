@@ -4,6 +4,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
 import { MoreHorizontal } from 'lucide-react';
 import { useSelector } from 'react-redux';
 import { toast } from 'sonner';
+import ToastMessage from '../ToastMessage';
 import { APPLICATION_API_END_POINT } from '../../utils/constants';
 import axios from 'axios';
 
@@ -13,7 +14,6 @@ const ApplicantsTable = () => {
     const { applicants } = useSelector(store => store.application);
 
     const statusHandler = async (status, id) => {
-        
         console.log('called');
         try {
             axios.defaults.withCredentials = true;
