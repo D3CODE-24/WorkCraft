@@ -13,6 +13,7 @@ const ApplicantsTable = () => {
     const { applicants } = useSelector(store => store.application);
 
     const statusHandler = async (status, id) => {
+        
         console.log('called');
         try {
             axios.defaults.withCredentials = true;

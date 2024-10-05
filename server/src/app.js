@@ -26,9 +26,9 @@ app.use(express.json());
 app.use(cookieparser());
 app.use(
   cors({
-    origin: "*",
+    origin: "http://localhost:5173",
     credentials: true,
-  })
+  }),
 );
 
 app.use(ROUTE_PREFIX + "/ecom/products", ProductRouter);

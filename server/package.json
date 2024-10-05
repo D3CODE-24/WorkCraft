@@ -19,7 +19,8 @@
     "#ecommerece/models": "./src/ecommerece/models/models.js",
     "#jobPortal/models": "./src/jobPortal/models/models.js",
     "#ecommerece/routes": "./src/ecommerece/routes/routes.js",
-    "#jobPortal/routes": "./src/jobPortal/routes/routes.js"
+    "#jobPortal/routes": "./src/jobPortal/routes/routes.js",
+    "#mlModel": "./src/ml-Model/weights/lstm_model.pth"
   },
   "keywords": [],
   "author": "",
