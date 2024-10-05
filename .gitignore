@@ -133,3 +133,8 @@ dist
 **/pnpm-lock.yaml
 **/node_modules/*
 .env*
+**/.mise*
+**/venv/
+**/__pycache__/
+**/.pytest_cache/
+**/.__pycache__/
