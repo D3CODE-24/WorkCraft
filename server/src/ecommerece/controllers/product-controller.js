@@ -82,7 +82,8 @@ const deleteProduct = asyncErrorHandler(async (req, res) => {
 });
 
 const getProductsByCategory = asyncErrorHandler(async (req, res) => {
-  const { category } = toLowerCase(req.params);
+  let { category } = req.params;
+  category = category.toLowerCase();
   try {
     let products;
     if (category !== "all") {
