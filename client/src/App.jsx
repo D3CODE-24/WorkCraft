@@ -36,23 +36,15 @@ function App() {
           <Route path="/jobs/*" element={<JobsPortal />} />
           <Route path="/marketplace" element={<Marketplace />} />
           <Route path="/learn" element={<Learn />} />
-
           <Route path="/product/:id" element={<ProductPage />} />
           <Route path="/category/:category" element={<MP_Category />} />
-
           <Route path="/login" element={<MP_Login />} />
           <Route path="/signup" element={<MP_Signup />} />
-
           <Route path="/new-product" element={<NewProduct />} />
           <Route path="/cart" element={<CartPage />} />
-
           <Route path="/orders" element={<OrdersPage />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/product/:id/edit" element={<EditProductPage />} />
-
-          
-          
-
         </Routes>
       </main>
     </div>

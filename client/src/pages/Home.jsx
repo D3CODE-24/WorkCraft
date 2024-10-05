@@ -1,10 +1,10 @@
 import React from 'react'
+import banner from "../assets/banner.png"
 
 const Home = () => {
   return (
-    <div className="text-center mt-8">
-    <h1 className="text-4xl font-bold mb-4">Welcome to WorkCraft</h1>
-    <p className="text-xl">Empowering unorganized workers and small-scale producers</p>
+    <div className="text-center mt-0">
+      <img src={banner} alt="banner" className="mt-0"/>
     </div>
   )
 }
