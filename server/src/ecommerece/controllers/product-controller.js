@@ -14,7 +14,7 @@ const createProduct = asyncErrorHandler(async (req, res) => {
     name,
     description,
     price,
-    category,
+    category: category.toLowerCase(),
     pictures,
     manufacturer,
   });
@@ -41,13 +41,8 @@ const getProductById = asyncErrorHandler(async (req, res) => {
   try {
     const product = await ProductModel.findById(id);
     let category = product.category;
-    const similar = await ProductModel.find({
-      $or: [
-        { category },
-        { category: category.toLowerCase() },
-        { category: category.toUpperCase() },
-      ],
-    }).limit(5);
+    category = category.toLowerCase();
+    const similar = await ProductModel.find({ category }).limit(5);
     res.status(200).json({ product, similar });
   } catch (err) {
     return new ErrorHandler(500, err);
@@ -67,7 +62,14 @@ const updateProduct = asyncErrorHandler(async (req, res) => {
   try {
     const product = await ProductModel.findByIdAndUpdate(
       id,
-      { name, description, price, category, pictures, manufacturer },
+      {
+        name,
+        description,
+        price,
+        category: category.toLowerCase(),
+        pictures,
+        manufacturer,
+      },
       { new: true },
     );
     res.status(200).json(product);
@@ -92,11 +94,7 @@ const getProductsByCategory = asyncErrorHandler(async (req, res) => {
     let products;
     if (category !== "all") {
       products = await ProductModel.find({
-        $or: [
-          { category },
-          { category: category.toLowerCase() },
-          { category: category.toUpperCase() },
-        ],
+        category,
       });
     } else {
       products = await ProductModel.find();
