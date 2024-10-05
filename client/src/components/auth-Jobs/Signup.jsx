@@ -68,8 +68,8 @@ const Signup = () => {
     },[])
     return (
         <div>
-            <div className='flex items-center justify-center max-w-7xl mx-auto'>
-                <form onSubmit={submitHandler} className='w-1/2 border border-gray-200 rounded-md p-4 my-10'>
+            <div className='flex items-center justify-center w-full mx-auto bg-blue-100 -mt-6'>
+                <form onSubmit={submitHandler} className='w-1/2 border bg-white border-gray-200 shadow-sm bg-[#0E1D31]rounded-md p-4 my-10'>
                     <h1 className='font-bold text-xl mb-5'>Sign Up</h1>
                     <div className='my-2'>
                         <Label>Full Name</Label>
@@ -78,7 +78,7 @@ const Signup = () => {
                             value={input.fullname}
                             name="fullname"
                             onChange={changeEventHandler}
-                            placeholder="patel"
+                            placeholder="abc"
                         />
                     </div>
                     <div className='my-2'>
@@ -88,7 +88,7 @@ const Signup = () => {
                             value={input.email}
                             name="email"
                             onChange={changeEventHandler}
-                            placeholder="patel@gmail.com"
+                            placeholder="abc@gmail.com"
                         />
                     </div>
                     <div className='my-2'>
@@ -108,7 +108,7 @@ const Signup = () => {
                             value={input.password}
                             name="password"
                             onChange={changeEventHandler}
-                            placeholder="patel@gmail.com"
+                            placeholder="********"
                         />
                     </div>
                     <div className='flex items-center justify-between'>
@@ -122,7 +122,7 @@ const Signup = () => {
                                     onChange={changeEventHandler}
                                     className="cursor-pointer"
                                 />
-                                <Label htmlFor="r1">Student</Label>
+                                <Label htmlFor="r1">Employee</Label>
                             </div>
                             <div className="flex items-center space-x-2">
                                 <Input
@@ -147,7 +147,7 @@ const Signup = () => {
                         </div>
                     </div>
                     {
-                        loading ? <Button className="w-full my-4"> <Loader2 className='mr-2 h-4 w-4 animate-spin' /> Please wait </Button> : <Button type="submit" className="w-full my-4">Signup</Button>
+                        loading ? <Button className="w-full my-4"> <Loader2 className='mr-2 h-4 w-4 animate-spin' /> Please wait </Button> : <Button type="submit" className="w-full my-4 bg-[#EE4865]">Signup</Button>
                     }
                     <span className='text-sm'>Already have an account? <Link to="/jobs/login" className='text-blue-600'>Login</Link></span>
                 </form>
