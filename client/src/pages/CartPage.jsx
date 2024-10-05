@@ -9,6 +9,8 @@ import {
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "@/components/CheckoutForm";
+import "./Cartpage.css";
+import MP_Navbar from "@/components/MP_Navbar";
 
 const stripePromise = loadStripe(
   "pk_test_51Q6QgKRp814PCqNWpAFq6Dr5i6S6v5NIBgGcNbQBE9H9yQmarpxN5AEuXE1angtWeK58c7RqRr9n7oryvEMn9uOU00FvXWXsq5"
@@ -29,12 +31,17 @@ function CartPage() {
   }
 
   return (
-    <Container style={{ minHeight: "95vh" }} className="cart-container">
+    <Container
+      fluid
+      style={{ minHeight: "95vh" }}
+      className="cart-container -mt-6 pl-4 pr-4"
+    >
+      <MP_Navbar />
       <Row>
         <Col>
-          <h1 className="pt-2 h3">Shopping cart</h1>
+          <h1 className="mt-3 h3 mb-4">Shopping cart</h1>
           {cart.length == 0 ? (
-            <Alert variant="info">
+            <Alert variant="info" >
               Shopping cart is empty. Add products to your cart
             </Alert>
           ) : (
@@ -84,7 +91,7 @@ function CartPage() {
                           }}
                         />
                       </td>
-                      <td>${item.price}</td>
+                      <td>₹{item.price}</td>
                       <td>
                         <span className="quantity-indicator">
                           <i
@@ -116,7 +123,7 @@ function CartPage() {
                 </tbody>
               </Table>
               <div>
-                <h3 className="h4 pt-4">Total: ${user.cart.total}</h3>
+                <h3 className="h4 pt-4">Total: ₹{user.cart.total}</h3>
               </div>
             </>
           </Col>
