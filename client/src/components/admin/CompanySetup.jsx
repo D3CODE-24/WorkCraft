@@ -53,7 +53,7 @@ const CompanySetup = () => {
             });
             if (res.data.success) {
                 toast.success(res.data.message);
-                navigate("/admin/companies");
+                navigate("/jobs/admin/companies");
             }
         } catch (error) {
             console.log(error);
@@ -78,7 +78,7 @@ const CompanySetup = () => {
             <div className='max-w-xl mx-auto my-10'>
                 <form onSubmit={submitHandler}>
                     <div className='flex items-center gap-5 p-8'>
-                        <Button onClick={() => navigate("/admin/companies")} variant="outline" className="flex items-center gap-2 text-gray-500 font-semibold">
+                        <Button onClick={() => navigate("/jobs/admin/companies")} variant="outline" className="flex items-center gap-2 text-gray-500 font-semibold">
                             <ArrowLeft />
                             <span>Back</span>
                         </Button>

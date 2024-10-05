@@ -49,7 +49,7 @@ const PostJob = () => {
             });
             if(res.data.success){
                 toast.success(res.data.message);
-                navigate("/admin/jobs");
+                navigate("/jobs/admin/new-jobs");
             }
         } catch (error) {
             toast.error(error.response.data.message);

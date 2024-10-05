@@ -9,7 +9,7 @@ const ProtectedRoute = ({children}) => {
 
     useEffect(()=>{
         if(user === null || user.role !== 'recruiter'){
-            navigate("/");
+            navigate("/jobs");
         }
     },[]);
 

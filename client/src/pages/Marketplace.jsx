@@ -11,7 +11,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateProducts } from "../redux/features-mp/productSlice";
 import MP_ProductPreview from "@/components/MP_ProductPreview";
 
-
 const Marketplace = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
@@ -31,7 +30,7 @@ const Marketplace = () => {
         <h1 className="text-2xl font-medium">Latest Products</h1>
         <div className="d-flex justify-content-center flex-wrap">
           {lastProducts.map((product) => (
-            <Link to="/product/:id">
+            <Link key={product.id} to={`/product/${product.id}`}>
               <MP_ProductPreview {...product} />
             </Link>
           ))}

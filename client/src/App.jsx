@@ -33,12 +33,10 @@ function App() {
 
           <Route path="/product/:id" element={<ProductPage />} />
           <Route path="/category/:category" element={<MP_Category />} />
-          {!user && (
-            <>
-              <Route path="/login" element={<MP_Login />} />
-              <Route path="/signup" element={<MP_Signup />} />
-            </>
-          )}
+
+          <Route path="/login" element={<MP_Login />} />
+          <Route path="/signup" element={<MP_Signup />} />
+
           <Route path="/new-product" element={<NewProduct />} />
           <Route path="/cart" element={<CartPage />} />
         </Routes>
