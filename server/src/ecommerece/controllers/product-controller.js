@@ -83,11 +83,13 @@ const deleteProduct = asyncErrorHandler(async (req, res) => {
 
 const getProductsByCategory = asyncErrorHandler(async (req, res) => {
   const { category } = toLowerCase(req.params);
-  if (category === "all") {
-    category = "";
-  }
   try {
-    const products = await ProductModel.find({ category });
+    let products;
+    if (category !== "all") {
+      products = await ProductModel.find({ category });
+    } else {
+      products = await ProductModel.find();
+    }
     res.status(200).json(products);
   } catch (err) {
     return new ErrorHandler(500, err);
