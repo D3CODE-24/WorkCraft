@@ -66,7 +66,7 @@ const Marketplace = () => {
           {" "}
           {categories.map((category) => (
             <LinkContainer
-              to={`/category/${category.name.toLocaleLowerCase()}`}
+              to={`/category/${category.name}`}
             >
               <Col md={4}>
                 <div

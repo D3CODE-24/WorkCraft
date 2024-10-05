@@ -129,9 +129,9 @@ function EditProductPage() {
                 <option disabled selected>
                   -- Select One --
                 </option>
-                <option value="Art">technology</option>
-                <option value="Handicrafts">tablets</option>
-                <option value="Pottery">phones</option>
+                <option value="Art">Art</option>
+                <option value="Handicrafts">Handicrafts</option>
+                <option value="Pottery">Pottery</option>
               </Form.Select>
             </Form.Group>
 
