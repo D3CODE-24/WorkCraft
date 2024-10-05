@@ -24,7 +24,7 @@ const Marketplace = () => {
   } else {
     lastProducts = products.slice(0, 20);
   }
-  console.log(lastProducts);
+
   useEffect(() => {
     axios.get("/products").then(({ data }) => dispatch(updateProducts(data)));
   }, []);

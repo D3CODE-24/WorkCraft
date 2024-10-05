@@ -23,7 +23,6 @@ import MP_Navbar from "@/components/MP_Navbar";
 function ProductPage() {
   const { id } = useParams();
   const user = useSelector((state) => state.user);
-  console.log(user);
   const [product, setProduct] = useState(null);
   const [similar, setSimilar] = useState(null);
   const [addToCart, { isSuccess }] = useAddToCartMutation();
@@ -35,6 +34,7 @@ function ProductPage() {
       setSimilar(data.similar);
     });
   }, [id]);
+  console.log(similar);
 
   if (!product) {
     return <Loading />;
@@ -63,11 +63,15 @@ function ProductPage() {
   }
 
   return (
-    <Container fluid className="pt-0 pr-0 pl-5 w-full -mt-6" style={{ position: "relative" }}>
+    <Container
+      fluid
+      className="pt-0 pr-0 pl-5 w-full -mt-6"
+      style={{ position: "relative" }}
+    >
       <MP_Navbar />
       <Row>
         <Col lg={6}>
-          <AliceCarousel 
+          <AliceCarousel
             mouseTracking
             items={images}
             controlsStrategy="alternate"
@@ -126,6 +130,7 @@ function ProductPage() {
       </Row>
       <div className="my-4">
         <h2>Similar Products</h2>
+        {/* {console.log(similarProducts)} */}
         <div className="d-flex justify-content-center align-items-center flex-wrap">
           <AliceCarousel
             mouseTracking

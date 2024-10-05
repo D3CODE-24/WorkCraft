@@ -14,7 +14,7 @@ const createProduct = asyncErrorHandler(async (req, res) => {
     name,
     description,
     price,
-    category: category.toLowerCase(),
+    category,
     pictures,
     manufacturer,
   });
@@ -41,7 +41,6 @@ const getProductById = asyncErrorHandler(async (req, res) => {
   try {
     const product = await ProductModel.findById(id);
     let category = product.category;
-    category = category.toLowerCase();
     const similar = await ProductModel.find({ category }).limit(5);
     res.status(200).json({ product, similar });
   } catch (err) {
@@ -66,11 +65,11 @@ const updateProduct = asyncErrorHandler(async (req, res) => {
         name,
         description,
         price,
-        category: category.toLowerCase(),
+        category,
         pictures,
         manufacturer,
       },
-      { new: true },
+      { new: true }
     );
     res.status(200).json(product);
   } catch (err) {
