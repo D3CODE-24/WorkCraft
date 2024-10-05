@@ -11,7 +11,7 @@ app = Flask(__name__)
 def index():
     """Home page."""
     df = pd.read_csv("./datasets/dataset-1.csv")
-    data = df.head(100)
+    data = df.head(400)
     prediction = predict(data, "./weights/scaler.save", "./weights/lstm_model.pth")
     return json.dumps(prediction.values.tolist())
 
