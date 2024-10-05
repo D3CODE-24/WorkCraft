@@ -1,19 +1,25 @@
 import json
 
-from flask import Flask, request
+import pandas as pd
+from flask import Flask, request, send_file
 from predict import predict
 
 app = Flask(__name__)
 
 
-@app.route("/", methods=["POST"])
+@app.route("/api/predict", methods=["POST"])
 def index():
     """Home page."""
-    data = request.json["data"]
+    df = pd.read_csv("./datasets/dataset-1.csv")
+    data = df.head(400)
     prediction = predict(data, "./weights/scaler.save", "./weights/lstm_model.pth")
-    for i in range(1, len(prediction)):
-        prediction[i] = f"{int(prediction[i])}"
-    return json.dumps({"prediction": prediction})
+    return json.dumps(prediction.values.tolist())
+
+
+@app.route("/api/market-data", methods=["GET"])
+def market_data():
+    """Home page."""
+    return send_file("./datasets/dataset-1.csv")
 
 
 if __name__ == "__main__":

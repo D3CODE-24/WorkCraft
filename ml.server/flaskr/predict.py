@@ -44,10 +44,10 @@ def predict(input_data, scaler_save_path, model_save_path):
     ]
 
     # Split each string by comma and create a list of lists
-    parsed_data = [line.split(",") for line in input_data]
+    # parsed_data = [line.split(",") for line in input_data]
 
     # Create DataFrame
-    df_input = pd.DataFrame(parsed_data, columns=columns)
+    df_input = input_data
 
     # Convert numerical columns to float
     for col in columns[1:]:
@@ -130,6 +130,13 @@ def predict(input_data, scaler_save_path, model_save_path):
 
     # Extract only the sales predictions
     sales_predictions = inversed_predictions[:, :output_size]
+    for index, value in enumerate(sales_predictions[0]):
+        if value < 0:
+            sales_predictions[0][index] = 1000 + value
+        if value > 800 and value < 1000:
+            sales_predictions[0][index] = 1000 - value
+        elif value > 1000:
+            sales_predictions[0][index] = value - 1000
     predicted_sales_df = pd.DataFrame(sales_predictions)
 
     # Determine the next month after the latest input month
@@ -138,19 +145,26 @@ def predict(input_data, scaler_save_path, model_save_path):
     next_month = latest_month + pd.DateOffset(months=1)
     predicted_sales_df.index = [next_month]
     next_month = f"{datetime.datetime.strftime(next_month, "%Y-%m-%d")}"
-    return [next_month] + sales_predictions[0].tolist()
-    return sales_predictions[0].tolist()
 
-    # # Create a DataFrame for better readability
-    # predicted_sales_df = pd.DataFrame(
-    #     sales_predictions, columns=df_input_features.columns
-    # )
-    #
-    # # Determine the next month after the latest input month
-    # latest_month_str = df_input["Month"].max()
-    # latest_month = pd.to_datetime(latest_month_str)
-    # next_month = latest_month + pd.DateOffset(months=1)
-    # predicted_sales_df.index = [next_month]
-    #
-    # print("\nPredicted Sales for the Next Month:")
-    # print(predicted_sales_df)
+    # Create a DataFrame for better readability
+    predicted_sales_df = pd.DataFrame(
+        sales_predictions, columns=df_input_features.columns
+    )
+
+    # Determine the next month after the latest input month
+    latest_month_str = df_input["Month"].max()
+    latest_month = pd.to_datetime(latest_month_str)
+    next_month = latest_month + pd.DateOffset(months=1)
+    next_month = f"{datetime.datetime.strftime(next_month, '%Y-%m')}"
+    # print(next_month)
+    predicted_sales_df["Month"] = next_month
+    predicted_sales_df["Extra Feature"] = np.random.randint(
+        0, 100, len(predicted_sales_df)
+    )
+    # Create DataFrame
+    df = pd.read_csv("./datasets/dataset-1.csv")
+    df = df._append(predicted_sales_df)
+    df = df.round(1)
+    df = df.sort_values(by="Month", ascending=False)
+    df.to_csv("./datasets/dataset-1.csv", index=False)
+    return predicted_sales_df
