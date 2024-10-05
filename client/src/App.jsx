@@ -17,6 +17,7 @@ import MP_Login from "./pages/MP-Login";
 import MP_Signup from "./pages/MP-Signup";
 import OrdersPage from "./pages/OrdersPage";
 import AdminDashboard from "./pages/AdminDashboard";
+import EditProductPage from "./pages/EditProductPage";
 
 function App() {
   const location = useLocation();
@@ -44,6 +45,9 @@ function App() {
 
           <Route path="/orders" element={<OrdersPage />} />
           <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/product/:id/edit" element={<EditProductPage />} />
+
+          
           
 
         </Routes>

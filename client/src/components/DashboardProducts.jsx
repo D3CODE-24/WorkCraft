@@ -1,39 +1,23 @@
 import React from "react";
 import { Table, Button } from "react-bootstrap";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useDeleteProductMutation } from "../redux/services-mp/appApi";
-import Pagination from "./Pagination";
 import "./DashboardProducts.css";
-import { updateProducts } from "../redux/features-mp/productSlice";
+import Pagination from "./Pagination";
+import { useNavigate } from "react-router-dom";
 
 function DashboardProducts() {
+  const navigate = useNavigate();
   const products = useSelector((state) => state.products);
   const user = useSelector((state) => state.user);
-  const dispatch = useDispatch();
-
-  const [deleteProduct, { isLoading }] = useDeleteProductMutation();
-
-  async function handleDeleteProduct(id) {
+  // removing the product
+  const [deletProduct, { isLoading, isSuccess }] = useDeleteProductMutation();
+  function handleDeleteProduct(id) {
+    // logic here
     if (window.confirm("Are you sure?")) {
-      try {
-        const result = await deleteProduct({
-          product_id: id,
-          user_id: user._id,
-        });
-        if (result.data) {
-          // The API should return the updated list of products
-          dispatch(updateProducts(result.data));
-        } else {
-          // If the API doesn't return the updated list, we'll update it manually
-          const updatedProducts = products.filter(
-            (product) => product._id !== id
-          );
-          dispatch(updateProducts(updatedProducts));
-        }
-      } catch (error) {
-        console.error("Error deleting product:", error);
-      }
+      deletProduct({ product_id: id, user_id: user._id });
+      navigate("/marketplace");
     }
   }
 
@@ -41,17 +25,16 @@ function DashboardProducts() {
     return (
       <tr>
         <td>
-          <img
-            src={pictures[0].url}
-            className="dashboard-product-preview"
-            alt={name}
-          />
+          <img src={pictures[0].url} className="dashboard-product-preview" />
         </td>
         <td>{_id}</td>
         <td>{name}</td>
         <td>{price}</td>
         <td>
-          <Button onClick={() => handleDeleteProduct(_id)} disabled={isLoading}>
+          <Button
+            onClick={() => handleDeleteProduct(_id, user._id)}
+            disabled={isLoading}
+          >
             Delete
           </Button>
           <Link to={`/product/${_id}/edit`} className="btn btn-warning">
@@ -63,7 +46,7 @@ function DashboardProducts() {
   }
 
   return (
-    <Table striped bordered hover responsive key={products.length}>
+    <Table striped bordered hover responsive>
       <thead>
         <tr>
           <th></th>

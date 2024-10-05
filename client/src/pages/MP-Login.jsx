@@ -3,14 +3,17 @@ import { Button, Col, Container, Form, Row, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useLoginMutation } from "../redux/services-mp/appApi";
 import MP_Navbar from "@/components/MP_Navbar";
+import { useNavigate } from "react-router-dom";
 
 function MP_Login() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [login, { isError, isLoading, error }] = useLoginMutation();
   function handleLogin(e) {
     e.preventDefault();
     login({ email, password });
+    navigate("/marketplace");
   }
   return (
     <Container>

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Alert, Col, Container, Form, Row, Button } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
-import { useUpdateProductMutation } from "../services/appApi";
+import { useUpdateProductMutation } from "../redux/services-mp/appApi";
 import axios from "../axios";
-import "./NewProduct.css";
+import "./NewProduct.css"
 
 function EditProductPage() {
   const { id } = useParams();
