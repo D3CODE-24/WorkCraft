@@ -18,7 +18,7 @@ import MP_Signup from "./pages/MP-Signup";
 import OrdersPage from "./pages/OrdersPage";
 import AdminDashboard from "./pages/AdminDashboard";
 import EditProductPage from "./pages/EditProductPage";
-import MP_Navbar from "./components/MP_Navbar";
+import MarketAnalysis from "./pages/MarketAnalysis";
 
 function App() {
   const location = useLocation();
@@ -35,6 +35,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/jobs/*" element={<JobsPortal />} />
           <Route path="/marketplace" element={<Marketplace />} />
+          <Route path="/market-analysis" element={<MarketAnalysis/>}/>
           <Route path="/learn" element={<Learn />} />
           <Route path="/product/:id" element={<ProductPage />} />
           <Route path="/category/:category" element={<MP_Category />} />
