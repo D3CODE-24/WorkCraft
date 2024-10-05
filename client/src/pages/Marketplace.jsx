@@ -11,7 +11,7 @@ import categories from "@/categories";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProducts } from "../redux/features-mp/productSlice";
 import MP_ProductPreview from "@/components/MP_ProductPreview";
-import mp_banner from "../assets/image3.png"
+import mp_banner from "../assets/image4.png"
 import mp_banner2 from "../assets/banner2.jpeg"
 
 const Marketplace = () => {
