@@ -1,4 +1,4 @@
-import { getDataUri, cloudinary } from "#utils";
+import { getDataUri, v2 as cloudinary } from "#utils";
 import { CompanyModel as Company } from "#jobPortal/models";
 
 import { asyncErrorHandler, ErrorHandler } from "#ecommerece/middlewares";

@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { getDataUri, cloudinary } from "#utils";
+import { getDataUri, v2 as cloudinary } from "#utils";
 import { UserModel as User } from "#jobPortal/models";
 import { asyncErrorHandler, ErrorHandler } from "#ecommerece/middlewares";
 
@@ -107,7 +107,6 @@ const updateProfile = asyncErrorHandler(async (req, res) => {
     const { fullname, email, phoneNumber, bio, skills } = req.body;
 
     const file = req.file;
-    // cloudinary ayega idhar
     const fileUri = getDataUri(file);
     const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
 
