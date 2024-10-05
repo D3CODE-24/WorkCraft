@@ -3,7 +3,7 @@ import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "../Signup.css"
 import { useSignupMutation } from "@/redux/services-mp/appApi";
-
+import MP_Navbar from "@/components/MP_Navbar";
 function MP_Signup() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -17,6 +17,7 @@ function MP_Signup() {
 
     return (
         <Container>
+            <MP_Navbar/>
             <Row>
                 <Col md={6} className="signup__form--container">
                     <Form style={{ width: "100%" }} onSubmit={handleSignup}>

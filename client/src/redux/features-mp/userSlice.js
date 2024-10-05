@@ -8,15 +8,36 @@ const initialState = null;
 export const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {}, // No reducers defined, leave it empty
+  reducers: { logout: () => initialState }, 
   extraReducers: (builder) => {
-    builder.addMatcher(appApi.endpoints.signup.matchFulfilled, (_, { payload }) => payload);
-    builder.addMatcher(appApi.endpoints.login.matchFulfilled, (_, { payload }) => payload);
-    builder.addMatcher(appApi.endpoints.addToCart.matchFulfilled, (_, { payload }) => payload);
-    builder.addMatcher(appApi.endpoints.removeFromCart.matchFulfilled, (_, { payload }) => payload);
-    builder.addMatcher(appApi.endpoints.increaseCartProduct.matchFulfilled, (_, { payload }) => payload);
-    builder.addMatcher(appApi.endpoints.decreaseCartProduct.matchFulfilled, (_, { payload }) => payload);
-    builder.addMatcher(appApi.endpoints.createOrder.matchFulfilled, (_, { payload }) => payload);
+    builder.addMatcher(
+      appApi.endpoints.signup.matchFulfilled,
+      (_, { payload }) => payload
+    );
+    builder.addMatcher(
+      appApi.endpoints.login.matchFulfilled,
+      (_, { payload }) => payload
+    );
+    builder.addMatcher(
+      appApi.endpoints.addToCart.matchFulfilled,
+      (_, { payload }) => payload
+    );
+    builder.addMatcher(
+      appApi.endpoints.removeFromCart.matchFulfilled,
+      (_, { payload }) => payload
+    );
+    builder.addMatcher(
+      appApi.endpoints.increaseCartProduct.matchFulfilled,
+      (_, { payload }) => payload
+    );
+    builder.addMatcher(
+      appApi.endpoints.decreaseCartProduct.matchFulfilled,
+      (_, { payload }) => payload
+    );
+    builder.addMatcher(
+      appApi.endpoints.createOrder.matchFulfilled,
+      (_, { payload }) => payload
+    );
   },
 });
 

@@ -15,7 +15,7 @@ function MP_Navbar() {
   }
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="light" expand="lg" className="w-full">
       <Container>
         <LinkContainer to="/">
           <Navbar.Brand>Ecommmerce</Navbar.Brand>

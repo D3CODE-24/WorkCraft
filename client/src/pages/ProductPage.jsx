@@ -18,6 +18,7 @@ import SimilarProduct from "@/components/SimilarProduct";
 import { LinkContainer } from "react-router-bootstrap";
 import { useAddToCartMutation } from "@/redux/services-mp/appApi";
 import ToastMessage from "@/components/ToastMessage";
+import MP_Navbar from "@/components/MP_Navbar";
 
 function ProductPage() {
   const { id } = useParams();
@@ -61,7 +62,8 @@ function ProductPage() {
   }
 
   return (
-    <Container className="pt-4" style={{ position: "relative" }}>
+    <Container className="pt-0 w-full" style={{ position: "relative" }}>
+      <MP_Navbar/>
       <Row>
         <Col lg={6}>
           <AliceCarousel
