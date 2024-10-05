@@ -16,7 +16,7 @@ function MP_Login() {
     navigate("/marketplace");
   }
   return (
-    <Container fluid className="pt-0 pr-0 pl-5 w-full -mt-6">
+    <Container fluid className="pt-0 pr-0 pl-5 h-full -mt-6 pb-0 mb-0">
       <MP_Navbar />
       <Row>
         <Col md={6} className="login__form--container">

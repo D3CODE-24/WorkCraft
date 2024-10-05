@@ -18,7 +18,7 @@ function MP_Navbar() {
     <Navbar bg="light" expand="lg" className="w-full">
       <Container>
         <LinkContainer to="/">
-          <Navbar.Brand className="font-semibold">MarketPlace</Navbar.Brand>
+          <Navbar.Brand className="font-semibold -ml-20">MarketPlace</Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -45,7 +45,7 @@ function MP_Navbar() {
             {/* if user */}
             {user && (
               <>
-                <NavDropdown title={`${user.email}`} id="basic-nav-dropdown">
+                <NavDropdown title={`${user.email}`} id="basic-nav-dropdown" className="-mr-20">
                   {user.isAdmin && (
                     <>
                       <LinkContainer to="/admin">

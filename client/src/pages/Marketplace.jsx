@@ -11,8 +11,8 @@ import categories from "@/categories";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProducts } from "../redux/features-mp/productSlice";
 import MP_ProductPreview from "@/components/MP_ProductPreview";
-import mp_banner from "../assets/image4.png"
-import mp_banner2 from "../assets/banner2.jpeg"
+import mp_banner from "../assets/image4.png";
+import mp_banner2 from "../assets/banner2.jpeg";
 
 const Marketplace = () => {
   const dispatch = useDispatch();
@@ -32,10 +32,7 @@ const Marketplace = () => {
     <div className="-mt-7">
       <MP_Navbar />
 
-      <img
-        src={mp_banner}
-        className="w-full "
-      />
+      <img src={mp_banner} className="w-full " />
       <div className="text-center mt-5 container">
         <h1 className="text-2xl font-medium mb-3">Latest Products</h1>
         <div className="d-flex justify-content-center flex-wrap">
@@ -45,9 +42,9 @@ const Marketplace = () => {
             </Link>
           ))}
         </div>
-        <div>
+        <div className="w-20 ml-auto mr-0">
           <Link
-            className="block text-right no-underline text-blue-600 text-lg mb-3"
+            className="block text-right no-underline text-blue-600 text-lg mb-4 "
             to="/category/all"
           >
             See all{">>"}
@@ -55,19 +52,13 @@ const Marketplace = () => {
         </div>
       </div>
       <div className="justify-center">
-        <img
-          src={mp_banner2}
-          className="ml-20"
-        />
+        <img src={mp_banner2} className="ml-48 h-1/2 w-3/4" />
       </div>
       <div className="container mt-4 ">
         <h1 className="text-2xl font-medium text-center mb-2">Categories</h1>
         <Row>
-          {" "}
           {categories.map((category) => (
-            <LinkContainer
-              to={`/category/${category.name}`}
-            >
+            <LinkContainer to={`/category/${category.name}`}>
               <Col md={4}>
                 <div
                   style={{
