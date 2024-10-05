@@ -28,13 +28,10 @@ const createProduct = asyncErrorHandler(async (req, res) => {
 });
 
 const getProducts = asyncErrorHandler(async (req, res) => {
-  console.log("getting products");
   try {
     const products = await ProductModel.find();
-    console.log(products);
     res.status(200).json(products);
   } catch (err) {
-    console.log(err);
     return new ErrorHandler(500, err);
   }
 });
