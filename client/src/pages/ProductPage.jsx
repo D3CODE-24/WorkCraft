@@ -63,11 +63,11 @@ function ProductPage() {
   }
 
   return (
-    <Container className="pt-0 w-full" style={{ position: "relative" }}>
+    <Container fluid className="pt-0 pr-0 pl-0 w-full -mt-6" style={{ position: "relative" }}>
       <MP_Navbar />
       <Row>
         <Col lg={6}>
-          <AliceCarousel
+          <AliceCarousel 
             mouseTracking
             items={images}
             controlsStrategy="alternate"

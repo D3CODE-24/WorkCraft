@@ -25,7 +25,7 @@ function App() {
   const user = useSelector((state) => state.user);
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-100 mt-0">
       {location.pathname.startsWith("/jobs") ? <NavbarJobs /> : <Navbar />},
  
       

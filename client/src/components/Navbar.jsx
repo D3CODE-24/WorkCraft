@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 
 const Navbar = () => {
   return (
-    <nav className="bg-black text-white">
+    <nav className="bg-black text-white mb-0 mt-0">
     <div className="container mx-auto px-4">
     <div className="flex items-center justify-between h-16">
     <Link to="/" className="hover:text-blue-200">WorkCraft</Link>

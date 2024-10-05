@@ -11,6 +11,8 @@ import categories from "@/categories";
 import { useDispatch, useSelector } from "react-redux";
 import { updateProducts } from "../redux/features-mp/productSlice";
 import MP_ProductPreview from "@/components/MP_ProductPreview";
+import mp_banner from "../assets/image3.png"
+import mp_banner2 from "../assets/banner2.jpeg"
 
 const Marketplace = () => {
   const dispatch = useDispatch();
@@ -27,12 +29,12 @@ const Marketplace = () => {
     axios.get("/products").then(({ data }) => dispatch(updateProducts(data)));
   }, []);
   return (
-    <div>
+    <div className="-mt-7">
       <MP_Navbar />
 
       <img
-        src=" https://res.cloudinary.com/learn-code-10/image/upload/v1653947013/yqajnhqf7usk56zkwqi5.png "
-        className="w-full"
+        src={mp_banner}
+        className="w-full "
       />
       <div className="text-center mt-5 container">
         <h1 className="text-2xl font-medium">Latest Products</h1>
@@ -54,7 +56,7 @@ const Marketplace = () => {
       </div>
       <div className="justify-center">
         <img
-          src="https://res.cloudinary.com/learn-code-10/image/upload/v1654093280/xkia6f13xxlk5xvvb5ed.png"
+          src={mp_banner2}
           className="ml-20"
         />
       </div>

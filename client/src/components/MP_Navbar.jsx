@@ -18,7 +18,7 @@ function MP_Navbar() {
     <Navbar bg="light" expand="lg" className="w-full">
       <Container>
         <LinkContainer to="/">
-          <Navbar.Brand>Ecommmerce</Navbar.Brand>
+          <Navbar.Brand className="font-semibold">MarketPlace</Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
