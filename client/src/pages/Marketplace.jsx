@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import axios from "../axios";
-import "./Marketplace.css"
+import "./Marketplace.css";
 import { useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import MP_Navbar from "../components/MP_Navbar";
@@ -15,7 +15,14 @@ import MP_ProductPreview from "@/components/MP_ProductPreview";
 const Marketplace = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
-  const lastProducts = products.slice(0, 8);
+  let lastProducts;
+  if (!(products instanceof Array)) {
+    lastProducts = [products];
+    lastProducts = lastProducts.slice(0, 8);
+  } else {
+    lastProducts = products.slice(0, 8);
+  }
+  console.log(lastProducts);
   useEffect(() => {
     axios.get("/products").then(({ data }) => dispatch(updateProducts(data)));
   }, []);
