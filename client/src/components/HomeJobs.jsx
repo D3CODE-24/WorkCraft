@@ -20,7 +20,7 @@ const Home_Jobs = () => {
   },[])
 
   return (
-    <div>
+    <div >
       <HeroSection/>
       <CategoryCarousel/>
       <LatestJobs/>
