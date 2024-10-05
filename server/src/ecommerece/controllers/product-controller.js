@@ -40,9 +40,14 @@ const getProductById = asyncErrorHandler(async (req, res) => {
   const { id } = req.params;
   try {
     const product = await ProductModel.findById(id);
+    let category = product.category;
     const similar = await ProductModel.find({
-      category: product.category,
-    }).limit(5); //confirm with sharon
+      $or: [
+        { category },
+        { category: category.toLowerCase() },
+        { category: category.toUpperCase() },
+      ],
+    }).limit(5);
     res.status(200).json({ product, similar });
   } catch (err) {
     return new ErrorHandler(500, err);
@@ -83,11 +88,16 @@ const deleteProduct = asyncErrorHandler(async (req, res) => {
 
 const getProductsByCategory = asyncErrorHandler(async (req, res) => {
   let { category } = req.params;
-  category = category.toLowerCase();
   try {
     let products;
     if (category !== "all") {
-      products = await ProductModel.find({ category });
+      products = await ProductModel.find({
+        $or: [
+          { category },
+          { category: category.toLowerCase() },
+          { category: category.toUpperCase() },
+        ],
+      });
     } else {
       products = await ProductModel.find();
     }
