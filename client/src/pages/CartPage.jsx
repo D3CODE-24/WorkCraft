@@ -6,6 +6,13 @@ import {
   useDecreaseCartProductMutation,
   useRemoveFromCartMutation,
 } from "../redux/services-mp/appApi";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import CheckoutForm from "@/components/CheckoutForm";
+
+const stripePromise = loadStripe(
+  "pk_test_51Q6QgKRp814PCqNWpAFq6Dr5i6S6v5NIBgGcNbQBE9H9yQmarpxN5AEuXE1angtWeK58c7RqRr9n7oryvEMn9uOU00FvXWXsq5"
+);
 
 function CartPage() {
   const user = useSelector((state) => state.user);
@@ -26,10 +33,14 @@ function CartPage() {
       <Row>
         <Col>
           <h1 className="pt-2 h3">Shopping cart</h1>
-          {cart.length == 0 && (
+          {cart.length == 0 ? (
             <Alert variant="info">
               Shopping cart is empty. Add products to your cart
             </Alert>
+          ) : (
+            <Elements stripe={stripePromise}>
+              <CheckoutForm />
+            </Elements>
           )}
         </Col>
         {cart.length > 0 && (

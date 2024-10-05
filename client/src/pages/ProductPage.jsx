@@ -23,6 +23,7 @@ import MP_Navbar from "@/components/MP_Navbar";
 function ProductPage() {
   const { id } = useParams();
   const user = useSelector((state) => state.user);
+  console.log(user);
   const [product, setProduct] = useState(null);
   const [similar, setSimilar] = useState(null);
   const [addToCart, { isSuccess }] = useAddToCartMutation();
@@ -63,7 +64,7 @@ function ProductPage() {
 
   return (
     <Container className="pt-0 w-full" style={{ position: "relative" }}>
-      <MP_Navbar/>
+      <MP_Navbar />
       <Row>
         <Col lg={6}>
           <AliceCarousel
@@ -98,7 +99,7 @@ function ProductPage() {
                 size="lg"
                 onClick={() =>
                   addToCart({
-                    userId: user._id, 
+                    userId: user._id,
                     productId: id,
                     price: product.price,
                     image: product.pictures[0].url,
@@ -109,12 +110,11 @@ function ProductPage() {
               </Button>
             </ButtonGroup>
           )}
-          {user &&
-            user.isAdmin && ( 
-              <LinkContainer to={`/product/${product._id}/edit`}>
-                <Button size="lg">Edit Product</Button>
-              </LinkContainer>
-            )}
+          {user && user.isAdmin && (
+            <LinkContainer to={`/product/${product._id}/edit`}>
+              <Button size="lg">Edit Product</Button>
+            </LinkContainer>
+          )}
           {isSuccess && (
             <ToastMessage
               bg="info"

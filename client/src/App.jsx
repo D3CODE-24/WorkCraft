@@ -15,6 +15,8 @@ import ScrollToTop from "@/components/ScrollToTop";
 import CartPage from "./pages/CartPage";
 import MP_Login from "./pages/MP-Login";
 import MP_Signup from "./pages/MP-Signup";
+import OrdersPage from "./pages/OrdersPage";
+import AdminDashboard from "./pages/AdminDashboard";
 
 function App() {
   const location = useLocation();
@@ -39,6 +41,11 @@ function App() {
 
           <Route path="/new-product" element={<NewProduct />} />
           <Route path="/cart" element={<CartPage />} />
+
+          <Route path="/orders" element={<OrdersPage />} />
+          <Route path="/admin" element={<AdminDashboard />} />
+          
+
         </Routes>
       </main>
     </div>
