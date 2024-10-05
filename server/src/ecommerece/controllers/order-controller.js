@@ -1,5 +1,6 @@
 import { OrderModel as Order, UserModel as User } from "#ecommerece/models";
 import { asyncErrorHandler, ErrorHandler } from "#ecommerece/middlewares";
+import { stripe } from "#utils";
 
 //creating an order
 
@@ -53,10 +54,25 @@ const shipping = asyncErrorHandler(async (req, res) => {
   }
 });
 
+const createPayment = asyncErrorHandler(async (req, res) => {
+  const { amount } = req.body;
+  try {
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount,
+      currency: "usd",
+      payment_method_types: ["card"],
+    });
+    res.status(200).json(paymentIntent);
+  } catch (e) {
+    return new ErrorHandler(400, e.message);
+  }
+});
+
 const orderController = {
   cerateOrder,
   getOrders,
   shipping,
+  createPayment,
 };
 
 export default orderController;

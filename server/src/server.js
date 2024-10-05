@@ -1,4 +1,5 @@
 import express from "express";
+import stripe from "stripe";
 import app from "./app.js";
 import cloudinary from "cloudinary";
 import dotenv from "dotenv";
@@ -19,4 +20,6 @@ app.listen(PORT || 3000, () => {
   console.log(`Server is running on port ${PORT} at http://localhost:${PORT}`);
 });
 
-export { cloudinary };
+const Stripe = stripe(process.env.STRIPE_SECRET_KEY);
+
+export { cloudinary, Stripe };
