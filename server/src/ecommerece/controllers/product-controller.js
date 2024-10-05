@@ -28,10 +28,13 @@ const createProduct = asyncErrorHandler(async (req, res) => {
 });
 
 const getProducts = asyncErrorHandler(async (req, res) => {
+  console.log("getting products");
   try {
     const products = await ProductModel.find();
+    console.log(products);
     res.status(200).json(products);
   } catch (err) {
+    console.log(err);
     return new ErrorHandler(500, err);
   }
 });
@@ -63,7 +66,7 @@ const updateProduct = asyncErrorHandler(async (req, res) => {
     const product = await ProductModel.findByIdAndUpdate(
       id,
       { name, description, price, category, pictures, manufacturer },
-      { new: true }
+      { new: true },
     );
     res.status(200).json(product);
   } catch (err) {

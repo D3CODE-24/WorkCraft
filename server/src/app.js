@@ -26,16 +26,16 @@ app.use(express.json());
 app.use(cookieparser());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "*",
     credentials: true,
   }),
 );
 
 app.use(ROUTE_PREFIX + "/ecom/products", ProductRouter);
 app.use(ROUTE_PREFIX + "/ecom/cart", CartRouter);
-app.use(ROUTE_PREFIX + "/ecom/order", OrderRouter);
+app.use(ROUTE_PREFIX + "/ecom/orders", OrderRouter);
 app.use(ROUTE_PREFIX + "/ecom/images", ImageRouter);
-app.use(ROUTE_PREFIX + "/ecom/user", EcommerceUserRouter);
+app.use(ROUTE_PREFIX + "/ecom/users", EcommerceUserRouter);
 
 app.use(ROUTE_PREFIX + "/jobPortal/application", ApplicationRouter);
 app.use(ROUTE_PREFIX + "/jobPortal/company", CompanyRouter);

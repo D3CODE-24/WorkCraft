@@ -4,7 +4,7 @@ import { stripe } from "#utils";
 
 //creating an order
 
-const cerateOrder = asyncErrorHandler(async (req, res) => {
+const createOrder = asyncErrorHandler(async (req, res) => {
   const { userId, cart, country, address } = req.body;
   try {
     const user = await User.findById(userId);
@@ -30,7 +30,7 @@ const cerateOrder = asyncErrorHandler(async (req, res) => {
 // getting all orders;
 const getOrders = asyncErrorHandler(async (req, res) => {
   try {
-    const orders = await Order.find().populate("owner", ["email", "name"]);
+    const orders = await Order.find().populate("owner");
     res.status(200).json(orders);
   } catch (e) {
     return new ErrorHandler(400, e.message);
@@ -40,7 +40,6 @@ const getOrders = asyncErrorHandler(async (req, res) => {
 //shipping order
 
 const shipping = asyncErrorHandler(async (req, res) => {
-  const io = req.app.get("socketio");
   const { ownerId } = req.body;
   const { id } = req.params;
   try {
@@ -55,7 +54,7 @@ const shipping = asyncErrorHandler(async (req, res) => {
 });
 
 const createPayment = asyncErrorHandler(async (req, res) => {
-  const { amount } = req.body;
+  const amount = Number(req.body.amount);
   try {
     const paymentIntent = await stripe.paymentIntents.create({
       amount,
@@ -69,7 +68,7 @@ const createPayment = asyncErrorHandler(async (req, res) => {
 });
 
 const orderController = {
-  cerateOrder,
+  createOrder,
   getOrders,
   shipping,
   createPayment,

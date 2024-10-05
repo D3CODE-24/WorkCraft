@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 class ErrorHandler extends Error {
   constructor(code, message) {
+    console.log(message);
     super(message);
     this.code = code;
   }
