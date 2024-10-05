@@ -22,7 +22,7 @@ function CheckoutForm() {
     if (!stripe || !elements || user.cart.count <= 0) return;
     setPaying(true);
     const { client_secret } = await fetch(
-      "http://localhost:3000/create-payment",
+      "http://localhost:3000/api/ecom/orders/create-payment",
       {
         method: "POST",
         headers: {

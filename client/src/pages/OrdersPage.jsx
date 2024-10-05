@@ -12,7 +12,7 @@ function OrdersPage() {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`/users/${user._id}/orders`)
+      .get(`/user/${user._id}/orders`)
       .then(({ data }) => {
         setLoading(false);
         setOrders(data);
