@@ -27,7 +27,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-100">
       {location.pathname.startsWith("/jobs") ? <NavbarJobs /> : <Navbar />},
-      {location.pathname.startsWith("/jobs") ? <MP_Navbar /> : <Navbar />}
+ 
       
       <main className="mx-0">
         <ScrollToTop />
@@ -40,15 +40,15 @@ function App() {
           <Route path="/product/:id" element={<ProductPage />} />
           <Route path="/category/:category" element={<MP_Category />} />
 
-          <Route path="/marketplace/login" element={<MP_Login />} />
-          <Route path="/marketplace/signup" element={<MP_Signup />} />
+          <Route path="/login" element={<MP_Login />} />
+          <Route path="/signup" element={<MP_Signup />} />
 
-          <Route path="/marketplace/new-product" element={<NewProduct />} />
-          <Route path="/marketplace/cart" element={<CartPage />} />
+          <Route path="/new-product" element={<NewProduct />} />
+          <Route path="/cart" element={<CartPage />} />
 
-          <Route path="/marketplace/orders" element={<OrdersPage />} />
-          <Route path="/marketplace/admin" element={<AdminDashboard />} />
-          <Route path="/marketplace/product/:id/edit" element={<EditProductPage />} />
+          <Route path="/orders" element={<OrdersPage />} />
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/product/:id/edit" element={<EditProductPage />} />
 
           
           
