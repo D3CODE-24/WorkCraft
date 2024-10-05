@@ -3,7 +3,7 @@ import { Alert, Col, Container, Form, Row, Button } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { useUpdateProductMutation } from "../redux/services-mp/appApi";
 import axios from "../axios";
-import "./NewProduct.css"
+import "./NewProduct.css";
 
 function EditProductPage() {
   const { id } = useParams();
@@ -129,10 +129,9 @@ function EditProductPage() {
                 <option disabled selected>
                   -- Select One --
                 </option>
-                <option value="technology">technology</option>
-                <option value="tablets">tablets</option>
-                <option value="phones">phones</option>
-                <option value="laptops">laptops</option>
+                <option value="Art">technology</option>
+                <option value="Handicrafts">tablets</option>
+                <option value="Pottery">phones</option>
               </Form.Select>
             </Form.Group>
 

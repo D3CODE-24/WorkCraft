@@ -20,9 +20,9 @@ const Marketplace = () => {
   let lastProducts;
   if (!(products instanceof Array)) {
     lastProducts = [products];
-    lastProducts = lastProducts.slice(0, 8);
+    lastProducts = lastProducts.slice(0, 20);
   } else {
-    lastProducts = products.slice(0, 8);
+    lastProducts = products.slice(0, 20);
   }
   console.log(lastProducts);
   useEffect(() => {
@@ -37,7 +37,7 @@ const Marketplace = () => {
         className="w-full "
       />
       <div className="text-center mt-5 container">
-        <h1 className="text-2xl font-medium">Latest Products</h1>
+        <h1 className="text-2xl font-medium mb-3">Latest Products</h1>
         <div className="d-flex justify-content-center flex-wrap">
           {lastProducts.map((product) => (
             <Link key={product.id} to={`/product/${product.id}`}>
