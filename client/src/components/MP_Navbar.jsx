@@ -17,7 +17,7 @@ function MP_Navbar() {
   return (
     <Navbar bg="light" expand="lg" className="w-full">
       <Container>
-        <LinkContainer to="/">
+        <LinkContainer to="/marketplace">
           <Navbar.Brand className="font-semibold mx-auto">MarketPlace</Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
