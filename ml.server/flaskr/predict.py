@@ -162,9 +162,9 @@ def predict(input_data, scaler_save_path, model_save_path):
         0, 100, len(predicted_sales_df)
     )
     # Create DataFrame
-    df = pd.read_csv("/ml.server/flaskr/datasets/dataset-1.csv")
+    df = pd.read_csv("./datasets/dataset-1.csv")
     df = df._append(predicted_sales_df)
     df = df.round(1)
     df = df.sort_values(by="Month", ascending=False)
-    df.to_csv("/ml.server/flaskr/datasets/dataset-1.csv", index=False)
+    df.to_csv("./datasets/dataset-1.csv", index=False)
     return predicted_sales_df
