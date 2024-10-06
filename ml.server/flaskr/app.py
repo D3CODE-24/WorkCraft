@@ -1,10 +1,12 @@
 import json
 
 import pandas as pd
-from flask import Flask, request, send_file
+from flask import Flask
+from flask_cors import CORS
 from predict import predict
 
 app = Flask(__name__)
+cors = CORS(app)
 
 
 @app.route("/api/predict", methods=["GET"])
@@ -19,7 +21,9 @@ def index():
 @app.route("/api/market-data", methods=["GET"])
 def market_data():
     """Home page."""
-    return send_file("./datasets/dataset-1.csv")
+    df = pd.read_csv("./datasets/dataset-1.csv")
+    json_data = df.to_json(orient="records")
+    return json_data
 
 
 if __name__ == "__main__":
