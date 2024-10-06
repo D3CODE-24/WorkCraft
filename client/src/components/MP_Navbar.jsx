@@ -5,20 +5,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
 import { logout } from "../redux/features-mp/userSlice";
 import "../MP_Navbar.css";
+import { useNavigate } from "react-router-dom";
 
 function MP_Navbar() {
+  const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   function handleLogout() {
     dispatch(logout());
+    navigate("/login");
   }
 
   return (
     <Navbar bg="light" expand="lg" className="w-full">
       <Container>
         <LinkContainer to="/marketplace">
-          <Navbar.Brand className="font-semibold mx-auto">MarketPlace</Navbar.Brand>
+          <Navbar.Brand className="font-semibold mx-auto">
+            MarketPlace
+          </Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -45,7 +50,11 @@ function MP_Navbar() {
             {/* if user */}
             {user && (
               <>
-                <NavDropdown title={`${user.email}`} id="basic-nav-dropdown" className="-mr-20">
+                <NavDropdown
+                  title={`${user.email}`}
+                  id="basic-nav-dropdown"
+                  className="-mr-20"
+                >
                   {user.isAdmin && (
                     <>
                       <LinkContainer to="/admin">
