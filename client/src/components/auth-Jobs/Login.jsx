@@ -53,9 +53,9 @@ const Login = () => {
         }
     },[])
     return (
-        <div className>
+        <div className="min-h-screen flex  ">
         
-            <div className='flex items-center bg-blue-100 -mt-6  justify-center w-full mx-auto'>
+            <div className='flex items-center bg-blue-100 -mt-6  justify-center w-screen mx-auto'>
                 <form onSubmit={submitHandler} className='w-1/2 border bg-white shadow-sm border-gray-200 rounded-md p-4 my-20 '>
                     <h1 className='font-bold text-xl mb-5'>Login</h1>
                     <div className='my-2'>
