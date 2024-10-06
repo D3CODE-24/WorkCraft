@@ -144,7 +144,7 @@ def predict(input_data, scaler_save_path, model_save_path):
     latest_month = pd.to_datetime(latest_month_str)
     next_month = latest_month + pd.DateOffset(months=1)
     predicted_sales_df.index = [next_month]
-    next_month = f"{datetime.datetime.strftime(next_month, "%Y-%m-%d")}"
+    next_month = f"{datetime.datetime.strftime(next_month, '%Y-%m')}"
 
     # Create a DataFrame for better readability
     predicted_sales_df = pd.DataFrame(
