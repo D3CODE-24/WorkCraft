@@ -20,7 +20,7 @@ function LearningComponent() {
   const [error, setError] = useState(null);
 
   const genAI = new GoogleGenerativeAI(
-    "AIzaSyBd41mJQxzXSJ0KQaSJgufNnyciMOM5nHQ" // Replace with your actual API key
+    "AIzaSyBd41mJQxzXSJ0KQaSJgufNnyciMOM5nHQ", // Replace with your actual API key
   );
 
   const handleInputChange = (e) => {
@@ -34,7 +34,7 @@ function LearningComponent() {
       const [field, skill] = inputValue.split(",").map((item) => item.trim());
       if (!field || !skill) {
         throw new Error(
-          "Please enter both field and skill separated by a comma."
+          "Please enter both field and skill separated by a comma.",
         );
       }
 
@@ -51,10 +51,10 @@ function LearningComponent() {
       setRoadmap(parseList(roadmapResult.response.text()));
 
       // Fetch resources (YouTube videos)
-      const resourcesPrompt = `Find 3 relevant and recent YouTube videos for learning ${skill} in the field of ${field}. Provide only the video URLs. Prioritize videos that are recent uploads (within the last year) from reputable channels, tutorials, or official documentation sources. Ensure the videos are currently available on YouTube. Format the response as a numbered list with just the URLs.`;
+      const resourcesPrompt = `Find 3 relevant and recent YouTube videos for learning ${skill} in the field of ${field}. Provide only the video URLs. Prioritize videos that are recent uploads (within the last year) from reputable channels, tutorials, or official documentation sources. Ensure the videos are currently available on YouTube. Format the response as a numbered list with just the URLs. Check if the video is playable and only provide the playable links`;
       const resourcesResult = await model.generateContent(resourcesPrompt);
       const videoUrls = extractVideoUrls(resourcesResult.response.text());
-      
+
       // Verify video availability and set resources
       const availableVideos = await verifyVideoAvailability(videoUrls);
       setResources(availableVideos.slice(0, 3));
@@ -163,7 +163,6 @@ function LearningComponent() {
                   <CardHeader>
                     <CardTitle className="text-2xl font-bold text-yellow-600">
                       Learning Roadmap for {inputValue.split(",")[1]}
-                      
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
@@ -221,3 +220,4 @@ function LearningComponent() {
 }
 
 export default LearningComponent;
+

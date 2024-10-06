@@ -1,0 +1,23 @@
+FROM node:22.5.0
+
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
+
+
+COPY ./ ./server
+WORKDIR /server
+
+ENV MONGO_URL=mongodb+srv://sharonpshajan:yMeZSl23InTh2eUa@workcraft.djjyh.mongodb.net/workcraft
+ENV PORT=3000
+ENV CLOUD_NAME=dnvszb4mw
+ENV CLOUD_API_KEY=722394662984269
+ENV CLOUD_API_SECRET=pSfOsyDhCSnOf3ruhRjFhvOs2QQ
+ENV SECRET_KEY=RoshinIsAnIdiot
+ENV STRIPE_SECRET_KEY=sk_test_51Q6QgKRp814PCqNWVr0tpz8RTs0nkNnMBroKAIdQfejPPPP1ZYtwjWIuEGK7cK5J4vjzVYqQWA4Mzo5gTECega4P0070HCZmza
+RUN ls
+RUN pnpm i
+
+
+
+EXPOSE 3000
