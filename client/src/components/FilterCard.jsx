@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { RadioGroup, RadioGroupItem } from './ui/radio-group'
-import { Label } from './ui/label'
-import { useDispatch } from 'react-redux'
-import { setSearchedQuery } from '@/redux/jobSlice'
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setSearchedQuery } from '@/redux/jobSlice';
 
-const fitlerData = [
+const filterData = [
     {
-        fitlerType: "Location",
+        filterType: "Location",
         array: [
             "Andhra Pradesh",
             "Arunachal Pradesh",
@@ -47,50 +45,63 @@ const fitlerData = [
         ]
     },
     {
-        fitlerType: "Industry",
-        array: ["Construction and Manual Labour", "Domestic and Care Services", "Agricultural and Allied Services","Retail and Sales","Transportation and Delivery","Textiles and Handicrafts","Beauty and Wellness","Household Services","Technology and Freelance Services","Community Services"]
+        filterType: "Industry",
+        array: [
+            "Carpenter",
+            "Electrician",
+            "Plumber",
+            "Mason",
+            "Farm worker",
+            "Loader",
+            "Tailor",
+            "Fitness Trainer",
+            "Painter",
+            "Cook",
+            "Social Worker"
+        ]
     },
-    {
-        fitlerType: "Salary",
-        array: ["0-5k", "5-10k", "10k-20k","20k-50k","50k-100k"]
-    },
-]
+    
+];
 
 const FilterCard = () => {
-    const [selectedValue, setSelectedValue] = useState('');
+    const [selectedFilters, setSelectedFilters] = useState({});
     const dispatch = useDispatch();
-    const changeHandler = (value) => {
-        setSelectedValue(value);
-    }
-    useEffect(()=>{
-        dispatch(setSearchedQuery(selectedValue));
-    },[selectedValue]);
+
+    const handleSelectChange = (filterType, value) => {
+        setSelectedFilters((prev) => ({
+            ...prev,
+            [filterType]: value,
+        }));
+    };
+
+    useEffect(() => {
+        const activeFilters = Object.values(selectedFilters).filter(Boolean).join(", ");
+        dispatch(setSearchedQuery(activeFilters));
+    }, [selectedFilters, dispatch]);
+
     return (
         <div className='w-full bg-white p-3 rounded-md'>
             <h1 className='font-bold text-lg'>Filter Jobs</h1>
             <hr className='mt-3' />
-            <RadioGroup value={selectedValue} onValueChange={changeHandler}>
-                {
-                    fitlerData.map((data, index) => (
-                        <div>
-                            <h1 className='font-bold text-lg'>{data.fitlerType}</h1>
-                            {
-                                data.array.map((item, idx) => {
-                                    const itemId = `id${index}-${idx}`
-                                    return (
-                                        <div className='flex items-center space-x-2 my-2'>
-                                            <RadioGroupItem value={item} id={itemId} />
-                                            <Label htmlFor={itemId}>{item}</Label>
-                                        </div>
-                                    )
-                                })
-                            }
-                        </div>
-                    ))
-                }
-            </RadioGroup>
+            {
+                filterData.map((data, index) => (
+                    <div key={index} className='my-4'>
+                        <h1 className='font-bold text-lg'>{data.filterType}</h1>
+                        <select
+                            className='w-full p-2 mt-2 border rounded-md'
+                            onChange={(e) => handleSelectChange(data.filterType, e.target.value)}
+                            value={selectedFilters[data.filterType] || ''}
+                        >
+                            <option value="">Select {data.filterType}</option>
+                            {data.array.map((item, idx) => (
+                                <option key={idx} value={item}>{item}</option>
+                            ))}
+                        </select>
+                    </div>
+                ))
+            }
         </div>
-    )
-}
+    );
+};
 
-export default FilterCard
+export default FilterCard;
