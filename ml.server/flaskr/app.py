@@ -7,7 +7,7 @@ from predict import predict
 app = Flask(__name__)
 
 
-@app.route("/api/predict", methods=["POST"])
+@app.route("/api/predict", methods=["GET"])
 def index():
     """Home page."""
     df = pd.read_csv("./datasets/dataset-1.csv")
