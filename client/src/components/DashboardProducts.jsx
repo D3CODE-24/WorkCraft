@@ -49,10 +49,13 @@ function DashboardProducts() {
     <Table striped bordered hover responsive>
       <thead>
         <tr>
-          <th></th>
+          <th>Image</th>
           <th>Product ID</th>
           <th>Product Name</th>
           <th>Product Price</th>
+          <th>Manage</th>
+
+          
         </tr>
       </thead>
       <tbody>

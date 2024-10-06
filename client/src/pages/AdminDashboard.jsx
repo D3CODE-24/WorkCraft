@@ -3,9 +3,11 @@ import { Container, Nav, Tab, Col, Row } from "react-bootstrap";
 import ClientsAdminPage from "../components/ClientsAdminPage";
 import DashboardProducts from "../components/DashboardProducts";
 import OrdersAdminPage from "../components/OrdersAdminPage";
+import MP_Navbar from "@/components/MP_Navbar";
 function AdminDashboard() {
   return (
-    <Container>
+    <Container fluid className="-mt-6">
+      <MP_Navbar/>
       <Tab.Container defaultActiveKey="products">
         <Row>
           <Col sm={3}>

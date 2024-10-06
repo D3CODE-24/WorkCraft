@@ -81,9 +81,9 @@ function EditProductPage() {
   return (
     <Container>
       <Row>
-        <Col md={6} className="new-product__form--container">
+        <Col md={6} className="new-product__form--container ">
           <Form style={{ width: "100%" }} onSubmit={handleSubmit}>
-            <h1 className="mt-4">Edit product</h1>
+            <h1 className="mt-4 mb-3 text-2xl font-medium">Edit product</h1>
             {isSuccess && <Alert variant="success">Product updated</Alert>}
             {isError && <Alert variant="danger">{error.data}</Alert>}
             <Form.Group className="mb-3">
@@ -161,7 +161,12 @@ function EditProductPage() {
             </Form.Group>
           </Form>
         </Col>
-        <Col md={6} className="new-product__image--container"></Col>
+        <Col md={6}>
+          <img
+            src="https://plus.unsplash.com/premium_photo-1679811672048-9d4b810a7588?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            className="ml-56 h-screen -mt-6"
+          />
+        </Col>
       </Row>
     </Container>
   );

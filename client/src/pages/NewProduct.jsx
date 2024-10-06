@@ -125,7 +125,7 @@ function NewProduct() {
               <Button type="button" onClick={showWidget} className="mt-4 ">
                 Upload Images
               </Button>
-              <div className="grid grid-cols-1 gap-3 mt-10 ">
+              <div className=" images-preview-container ">
                 {images.map((image) => (
                   <div className="w-24 inline-block relative">
                     <img
@@ -156,8 +156,8 @@ function NewProduct() {
         <Col md={6}>
           {" "}
           <img
-            src="https://images.unsplash.com/photo-1652773899966-583e9d2f2fb0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzR8fHRlY2h8ZW58MHwxfDB8d2hpdGV8&auto=format&fit=crop&w=800&q=60"
-            className="ml-24"
+            src="https://plus.unsplash.com/premium_photo-1679811672048-9d4b810a7588?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            className="ml-56 h-screen"
           />{" "}
         </Col>
       </Row>
