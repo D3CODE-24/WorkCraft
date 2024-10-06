@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: server
+    env: docker
+    dockerfilePath: ./server/Dockerfile
+    dockerCommand: npm run dev
+    envVars:
+      - key: PORT
+        value: 3000
+
+  - type: web
+    name: client
+    env: docker
+    dockerfilePath: ./client/Dockerfile
+    dockerCommand: npm run dev
+    envVars:
+      - key: PORT
+        value: 5173
+
+  - type: web
+    name: ml-server
+    env: docker
+    dockerfilePath: ./ml.server/Dockerfile
+    dockerCommand: python3 flaskr/app.py
+    envVars:
+      - key: PORT
+        value: 5000
