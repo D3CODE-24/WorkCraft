@@ -51,9 +51,13 @@ function LearningComponent() {
       setRoadmap(parseList(roadmapResult.response.text()));
 
       // Fetch resources (YouTube videos)
-      const resourcesPrompt = `Find relevant YouTube videos for learning ${skill} in the field of ${field}. Provide only the video URLs.  Prioritize videos that are recent uploads from reputable channels, tutorials or official documentation sources. If possible, include the video title or a short description to help users better understand the content.Also give me a video url of rickroll`;
+      const resourcesPrompt = `Find 3 relevant and recent YouTube videos for learning ${skill} in the field of ${field}. Provide only the video URLs. Prioritize videos that are recent uploads (within the last year) from reputable channels, tutorials, or official documentation sources. Ensure the videos are currently available on YouTube. Format the response as a numbered list with just the URLs.`;
       const resourcesResult = await model.generateContent(resourcesPrompt);
-      setResources(extractVideoUrls(resourcesResult.response.text()));
+      const videoUrls = extractVideoUrls(resourcesResult.response.text());
+      
+      // Verify video availability and set resources
+      const availableVideos = await verifyVideoAvailability(videoUrls);
+      setResources(availableVideos.slice(0, 3));
 
       setLoading(false);
     } catch (err) {
@@ -74,7 +78,23 @@ function LearningComponent() {
   const extractVideoUrls = (text) => {
     const urlRegex =
       /(https?:\/\/(?:www\.)?youtube\.com\/watch\?v=[A-Za-z0-9_-]{11})/g;
-    return Array.from(text.matchAll(urlRegex), (m) => m[0]);
+    return Array.from(text.matchAll(urlRegex), (m) => m[0]).slice(0, 3);
+  };
+
+  const verifyVideoAvailability = async (urls) => {
+    const availableVideos = [];
+    for (const url of urls) {
+      try {
+        const response = await fetch(`https://noembed.com/embed?url=${url}`);
+        const data = await response.json();
+        if (data.title) {
+          availableVideos.push(url);
+        }
+      } catch (error) {
+        console.error(`Error verifying video ${url}:`, error);
+      }
+    }
+    return availableVideos;
   };
 
   return (
@@ -122,7 +142,7 @@ function LearningComponent() {
                 <Card className="shadow-md">
                   <CardHeader>
                     <CardTitle className="text-2xl font-bold text-green-600">
-                      Current Trends in {inputValue.split(",")[0].trim()}
+                      Current Trends in {inputValue.split(",")[0]}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
@@ -142,7 +162,8 @@ function LearningComponent() {
                 <Card className="shadow-md">
                   <CardHeader>
                     <CardTitle className="text-2xl font-bold text-yellow-600">
-                      Learning Roadmap for {inputValue.split(",")[1].trim()}
+                      Learning Roadmap for {inputValue.split(",")[1]}
+                      
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
