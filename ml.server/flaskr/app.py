@@ -22,6 +22,7 @@ def index():
 def market_data():
     """Home page."""
     df = pd.read_csv("./datasets/dataset-1.csv")
+    df = df.drop(columns=["Extra Feature"])
     json_data = df.to_json(orient="records")
     return json_data
 
