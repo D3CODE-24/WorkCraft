@@ -13,6 +13,7 @@ import { updateProducts } from "../redux/features-mp/productSlice";
 import MP_ProductPreview from "@/components/MP_ProductPreview";
 import mp_banner from "../assets/image4.png";
 import mp_banner2 from "../assets/banner2.jpeg";
+import Footer from "@/components/shared/Footer";
 
 const Marketplace = () => {
   const dispatch = useDispatch();
@@ -59,7 +60,7 @@ const Marketplace = () => {
         <Row>
           {categories.map((category) => (
             <LinkContainer to={`/category/${category.name}`}>
-              <Col md={4}>
+              <Col md={4} className="mb-5">
                 <div
                   style={{
                     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${category.img})`,
@@ -74,6 +75,7 @@ const Marketplace = () => {
           ))}
         </Row>
       </div>
+      <Footer/>
     </div>
   );
 };

@@ -9,7 +9,7 @@ import {
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "@/components/CheckoutForm";
-import "./Cartpage.css";
+import "./CartPage.css";
 import MP_Navbar from "@/components/MP_Navbar";
 
 const stripePromise = loadStripe(
