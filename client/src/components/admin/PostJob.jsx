@@ -59,7 +59,7 @@ const PostJob = () => {
     }
 
     return (
-        <div>
+        <div >
             
             <div className='flex items-center justify-center w-screen my-5'>
                 <form onSubmit = {submitHandler} className='p-8 max-w-4xl border border-gray-200 shadow-lg rounded-md'>
@@ -115,7 +115,7 @@ const PostJob = () => {
                             />
                         </div>
                         <div>
-                            <Label>Job Type</Label>
+                            <Label>Job Type/Time in hrs</Label>
                             <Input
                                 type="text"
                                 name="jobType"
@@ -167,7 +167,7 @@ const PostJob = () => {
                         }
                     </div> 
                     {
-                        loading ? <Button className="w-full my-4"> <Loader2 className='mr-2 h-4 w-4 animate-spin' /> Please wait </Button> : <Button type="submit" className="w-full my-4">Post New Job</Button>
+                        loading ? <Button className="w-full my-4"> <Loader2 className='mr-2 h-4 w-4 animate-spin' /> Please wait </Button> : <Button type="submit" className="w-full my-4 bg-[#EE4865]">Post New Job</Button>
                     }
                     {
                         companies.length === 0 && <p className='text-xs text-red-600 font-bold text-center my-3'>*Please register a company first, before posting a jobs</p>
