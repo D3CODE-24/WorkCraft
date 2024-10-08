@@ -107,7 +107,6 @@ function ProductPage() {
                     userId: user._id,
                     productId: id,
                     price: product.price,
-                    image: product.pictures[0].url,
                     noItems: itemNumber,
                   })
                 }
