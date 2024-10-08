@@ -95,7 +95,7 @@ const PostJob = () => {
                             />
                         </div>
                         <div>
-                            <Label>Salary</Label>
+                            <Label>Salary in Thousands</Label>
                             <Input
                                 type="text"
                                 name="salary"
@@ -115,7 +115,7 @@ const PostJob = () => {
                             />
                         </div>
                         <div>
-                            <Label>Job Type/Time in hrs</Label>
+                            <Label>Work hours(Time hrs)</Label>
                             <Input
                                 type="text"
                                 name="jobType"
@@ -125,7 +125,7 @@ const PostJob = () => {
                             />
                         </div>
                         <div>
-                            <Label>Experience Level</Label>
+                            <Label>Experience(in years)</Label>
                             <Input
                                 type="text"
                                 name="experience"
@@ -148,7 +148,7 @@ const PostJob = () => {
                             companies.length > 0 && (
                                 <Select onValueChange={selectChangeHandler}>
                                     <SelectTrigger className="w-[180px]">
-                                        <SelectValue placeholder="Select a Company" />
+                                        <SelectValue placeholder="Employer" />
                                     </SelectTrigger>
                                     <SelectContent>
                                         <SelectGroup>
@@ -170,7 +170,7 @@ const PostJob = () => {
                         loading ? <Button className="w-full my-4"> <Loader2 className='mr-2 h-4 w-4 animate-spin' /> Please wait </Button> : <Button type="submit" className="w-full my-4 bg-[#EE4865]">Post New Job</Button>
                     }
                     {
-                        companies.length === 0 && <p className='text-xs text-red-600 font-bold text-center my-3'>*Please register a company first, before posting a jobs</p>
+                        companies.length === 0 && <p className='text-xs text-red-600 font-bold text-center my-3'>*Please register a employer first, before posting a jobs</p>
                     }
                 </form>
             </div>

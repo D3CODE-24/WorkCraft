@@ -51,9 +51,10 @@ function LearningComponent() {
       setRoadmap(parseList(roadmapResult.response.text()));
 
       // Fetch resources (YouTube videos)
-      const resourcesPrompt = `Find 3 relevant and recent YouTube videos for learning ${skill} in the field of ${field}. Provide only the video URLs. Prioritize videos that are recent uploads (within the last year) from reputable channels, tutorials, or official documentation sources. Ensure the videos are currently available on YouTube. Format the response as a numbered list with just the URLs.`;
+      const resourcesPrompt = `Find 3 relevant and recent YouTube videos for learning ${skill} in the field of ${field}. Provide only the video URLs. Prioritize videos that are recent uploads (within the last year) . Ensure the videos are currently available on YouTube. `;
       const resourcesResult = await model.generateContent(resourcesPrompt);
       const videoUrls = extractVideoUrls(resourcesResult.response.text());
+      console.log(resourcesPrompt)
       
       // Verify video availability and set resources
       const availableVideos = await verifyVideoAvailability(videoUrls);

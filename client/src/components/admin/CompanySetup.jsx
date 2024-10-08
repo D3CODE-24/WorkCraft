@@ -82,11 +82,11 @@ const CompanySetup = () => {
                             <ArrowLeft />
                             <span>Back</span>
                         </Button>
-                        <h1 className='font-bold text-xl'>Company Setup</h1>
+                        <h1 className='font-bold text-xl'>Consumer Setup</h1>
                     </div>
                     <div className='grid grid-cols-2 gap-4'>
                         <div>
-                            <Label>Company Name</Label>
+                            <Label>Consumer Name</Label>
                             <Input
                                 type="text"
                                 name="name"
@@ -95,7 +95,7 @@ const CompanySetup = () => {
                             />
                         </div>
                         <div>
-                            <Label>Description</Label>
+                            <Label>Bio</Label>
                             <Input
                                 type="text"
                                 name="description"
@@ -103,7 +103,7 @@ const CompanySetup = () => {
                                 onChange={changeEventHandler}
                             />
                         </div>
-                        <div>
+                        {/* <div>
                             <Label>Website</Label>
                             <Input
                                 type="text"
@@ -111,7 +111,7 @@ const CompanySetup = () => {
                                 value={input.website}
                                 onChange={changeEventHandler}
                             />
-                        </div>
+                        </div> */}
                         <div>
                             <Label>Location</Label>
                             <Input
@@ -122,7 +122,7 @@ const CompanySetup = () => {
                             />
                         </div>
                         <div>
-                            <Label>Logo</Label>
+                            <Label>Profile Picture</Label>
                             <Input
                                 type="file"
                                 accept="image/*"
