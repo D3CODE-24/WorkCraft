@@ -29,6 +29,7 @@ function CartPage() {
     if (quantity <= 0) return alert("Can't proceed");
     decreaseCart(product);
   }
+ 
 
   return (
     <Container
@@ -36,12 +37,13 @@ function CartPage() {
       style={{ minHeight: "95vh" }}
       className="cart-container -mt-6 pl-4 pr-4"
     >
+      
       <MP_Navbar />
       <Row>
         <Col>
           <h1 className="mt-3 h3 mb-4">Shopping cart</h1>
           {cart.length == 0 ? (
-            <Alert variant="info" >
+            <Alert variant="info">
               Shopping cart is empty. Add products to your cart
             </Alert>
           ) : (
@@ -104,7 +106,7 @@ function CartPage() {
                               })
                             }
                           ></i>
-                          <span>{user.cart[item._id]}</span>
+                          <span>{user.cart[item._id]}</span> {/*here*/}
                           <i
                             className="fa fa-plus-circle"
                             onClick={() =>
@@ -117,7 +119,7 @@ function CartPage() {
                           ></i>
                         </span>
                       </td>
-                      <td>${item.price * user.cart[item._id]}</td>
+                      <td>₹{item.price * user.cart[item._id]}</td>
                     </tr>
                   ))}
                 </tbody>
