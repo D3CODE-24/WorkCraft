@@ -26,6 +26,7 @@ function ProductPage() {
   const [product, setProduct] = useState(null);
   const [similar, setSimilar] = useState(null);
   const [addToCart, { isSuccess }] = useAddToCartMutation();
+  const [itemNumber, setItemNumber] = useState(1);
 
   const handleDragStart = (e) => e.preventDefault();
   useEffect(() => {
@@ -34,7 +35,6 @@ function ProductPage() {
       setSimilar(data.similar);
     });
   }, [id]);
-  console.log(similar);
 
   if (!product) {
     return <Loading />;
@@ -89,6 +89,7 @@ function ProductPage() {
           {user && !user.isAdmin && (
             <ButtonGroup className="mb-3 rounded-2xl" style={{ width: "90%" }}>
               <Form.Select
+                onChange={(e) => setItemNumber(e.target.value)}
                 className="rounded-2xl"
                 size="lg"
                 style={{ width: "40%", borderRadius: "0" }}
@@ -107,6 +108,7 @@ function ProductPage() {
                     productId: id,
                     price: product.price,
                     image: product.pictures[0].url,
+                    noItems: itemNumber,
                   })
                 }
               >

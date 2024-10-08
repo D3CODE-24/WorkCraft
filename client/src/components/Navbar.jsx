@@ -12,7 +12,7 @@ const Navbar = () => {
     <li><Link to="/jobs" className="hover:text-blue-200">Jobs</Link></li>
     <li><Link to="/marketplace" className="hover:text-blue-200">Marketplace</Link></li>
     <li><Link to="/learn" className="hover:text-blue-200">Learn</Link></li>
-    <li><Link to="/market-analysis" className="hover:text-blue-200 " >MarketAnalysis</Link></li>
+    <li><Link to="/market-analysis" className="hover:text-blue-200 " >Market Analysis</Link></li>
     </ul>
     </div>
     </div>
