@@ -9,7 +9,7 @@ import {
 } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
-import bgImage from "../assets/bg-image.jpeg";
+import bgImage from "../assets/bg-image2.jpeg";
 
 function LearningComponent() {
   const [inputValue, setInputValue] = useState("");
